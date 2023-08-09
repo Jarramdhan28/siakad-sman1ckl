@@ -1,0 +1,77 @@
+Tabel
+
+- kelas
+    - id
+    - nama_kelas
+    - created_at
+    - updated_at
+- pelajaran
+    - id
+    - nama_pelajaran
+    - created_at
+    - updated_at
+- admin-guru
+    - id
+    - nip
+    - nama
+    - tanggal-lahir
+    - jenis_kelamin
+    - email
+    - alamat
+    - no_hp
+    - pelajaran_id
+    - password
+    - role
+    - created_at
+    - updated_at
+- siswa
+    - id
+    - nis
+    - nama
+    - tanggal-lahir
+    - jenis-kelamin
+    - email
+    - alamat
+    - no-hp
+    - kelas_id
+    - password
+    - created_at
+    - updated_at
+- informasi
+    - id
+    - judul
+    - tanggal
+    - isi
+    - created_at
+    - updated_at
+- absensi
+    - id
+    - siswa_id
+    - pelajaran_id
+    - tanggal
+    - keterangan
+    - created_at
+    - updated_at
+- nilai
+    - id
+    - siswa_id
+    - pelajaran_id
+    - nilai
+    - keterangan
+    - created_at
+    - updated_at
+
+
+
+
+
+
+
+- jadwal-pelajaran
+    - id
+    - pelajaran_id
+    - kelas_id
+    - hari
+    - jam
+    - created_at
+    - updated_at
