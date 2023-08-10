@@ -4,15 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Guru;
-class Pelajaran extends Model
+use App\Models\Kelas;
+
+class Siswa extends Model
 {
     use HasFactory;
-    protected $table = 'pelajaran';
+    protected $table = 'siswa';
     protected $guarded = ['id'];
 
-    public function guru()
+    public function kelas()
     {
-        return $this->hasMany(Guru::class);
+        return $this->belongsTo(Kelas::class);
     }
 }

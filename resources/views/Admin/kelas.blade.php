@@ -1,6 +1,6 @@
 <x-admin-layout>
     <div class="pb-6 pt-1">
-        <span class="font-bold text-4xl">Halaman Guru</span>
+        <span class="font-bold text-4xl">Halaman Data Kelas</span>
     </div>
 
     @if(session('success'))
@@ -17,41 +17,29 @@
     @endif
 
     <div class="pb-6">
-        <a href="{{ route('formGuru') }}" class="bg-purple-600 py-2 px-2 rounded-none text-white hover:bg-purple-800">Tambah Data Guru</a>
+        <a href="{{ route('formKelas') }}" class="bg-purple-600 py-2 px-2 rounded-none text-white hover:bg-purple-800">Tambah Data Kelas</a>
     </div>
 
     <div>
-        <table id="guruTable" class="table-auto">
+        <table id="kelasTable" class="table-auto">
             <thead class="bg-gray-200">
                 <tr>
-                    <th scope="col" class="px-6 py-3">NIP</th>
-                    <th scope="col" class="px-6 py-3">Nama</th>
-                    <th scope="col" class="px-6 py-3">Jenis Kelamin</th>
-                    <th scope="col" class="px-6 py-3">Alamat</th>
-                    <th scope="col" class="px-6 py-3">Email</th>
-                    <th scope="col" class="px-6 py-3">No HP</th>
-                    <th scope="col" class="px-6 py-3">Mengajar</th>
+                    <th scope="col" class="px-6 py-3">No</th>
+                    <th scope="col" class="px-6 py-3">Nama Kelas</th>
                     <th scope="col" class="px-6 py-3">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($guru as $data )
+                @foreach ($kelas as $data )
                     <tr class="bg-white hover:bg-gray-100">
-                        <td class="text-center">{{$data->nip}}</td>
-                        <td class="text-center">{{$data->nama_guru}}</td>
-                        <td class="text-center">{{$data->jenis_kelamin}}</td>
-                        <td class="text-center">{{$data->alamat}}</td>
-                        <td class="text-center">{{$data->email}}</td>
-                        <td class="text-center">{{$data->no_hp}}</td>
-                        <td class="text-center">{{$data->pelajaran->nama_pelajaran}}</td>
+                        <td class="text-center">{{$loop->iteration}}</td>
+                        <td class="text-center">{{$data->nama_kelas}}</td>
                         <td class="text-center">
-                            <form action="{{ route('hapusGuru', $data->id) }}" method="post">
+                            <form action="{{ route('hapusKelas', $data->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" onclick="return confirm('Yakin?')" class="bg-red-600 py-2 px-2 rounded-none text-white hover:bg-red-800">Hapus</button>
                             </form>
-
-                             <a href="{{ route('formUbahGuru', $data->id) }}" class="bg-green-600 py-2 px-2 mb-2 rounded-none text-white hover:bg-green-800">Ubah</a>
 
                             {{-- <a href="" class="bg-green-600 py-2 px-2 rounded-none text-white hover:bg-green-800">Ubah</a> --}}
                         </td>
@@ -64,7 +52,7 @@
     <!-- Add this script at the end of your <body> -->
     <script>
         $(document).ready(function() {
-            $('#guruTable').DataTable();
+            $('#kelasTable').DataTable();
         });
     </script>
 

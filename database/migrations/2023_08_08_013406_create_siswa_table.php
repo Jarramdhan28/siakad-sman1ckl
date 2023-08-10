@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin', 15);
             $table->text('alamat');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('no_hp', 15);
             $table->integer('kelas_id');
             $table->string('password');
