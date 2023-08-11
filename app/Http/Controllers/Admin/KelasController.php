@@ -39,4 +39,19 @@ class KelasController extends Controller
 
         return redirect()->route('adminKelas')->with('success', 'Kelas Berhasil Dihapus');
     }
+
+    public function show($id)
+    {
+        $kelas = Kelas::findOrFail($id);
+        return view('admin.ubah-kelas', compact('kelas'));
+    }
+
+    public function ubah(Request $request, $id)
+    {
+        $kelas = Kelas::where('id', $request->id)->update([
+            'nama_kelas' => $request->nama_kelas,
+        ]);
+
+        return redirect()->route('adminKelas')->with('success', 'Kelas Berhasil Diupdate successfully.');
+    }
 }

@@ -39,4 +39,19 @@ class PelajaranController extends Controller
 
         return redirect()->route('adminPelajaran')->with('success', 'Pelajaran Berhasil Dihapus');
     }
+
+    public function show($id)
+    {
+        $pelajaran = Pelajaran::findOrFail($id);
+        return view('admin.ubah-pelajaran', compact('pelajaran'));
+    }
+
+    public function ubah(Request $request, $id)
+    {
+        $pelajaran = Pelajaran::where('id', $request->id)->update([
+            'nama_pelajaran' => $request->nama_pelajaran,
+        ]);
+
+        return redirect()->route('adminPelajaran')->with('success', 'Pelajaran Berhasil Diupdate successfully.');
+    }
 }

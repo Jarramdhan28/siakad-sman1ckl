@@ -49,4 +49,27 @@ class SiswaController extends Controller
 
         return redirect()->route('adminSiswa')->with('success', 'Siswa Berhasil Dihapus');
     }
+
+    public function show($id)
+    {
+        $siswa = Siswa::findOrFail($id);
+        $kelas = Kelas::all();
+        return view('admin.ubah-siswa', compact('siswa', 'kelas'));
+    }
+
+    public function ubah(Request $request, $id)
+    {
+        $siswa = Siswa::where('id', $request->id)->update([
+            'nis' => $request->nis,
+            'nama_siswa' => $request->nama_siswa,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'email' => $request->email,
+            'no_hp' => $request->no_hp,
+            'kelas_id' => $request->kelas_id,
+        ]);
+
+        return redirect()->route('adminSiswa')->with('success', 'Siswa Berhasil Diupdate successfully.');
+    }
 }

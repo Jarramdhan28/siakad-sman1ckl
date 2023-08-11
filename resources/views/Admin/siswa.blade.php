@@ -17,11 +17,11 @@
     @endif
 
     <div class="pb-6">
-        <a href="{{ route('formSiswa') }}" class="bg-purple-600 py-2 px-2 rounded-none text-white hover:bg-purple-800">Tambah Data Siswa</a>
+        <a href="{{ route('formSiswa') }}" class="inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Tambah Data Siswa</a>
     </div>
 
     <div>
-        <table id="kelasTable" class="table-auto">
+        <table id="siswaTable" class="table-auto">
             <thead class="bg-gray-200">
                 <tr>
                     <th scope="col" class="px-6 py-3">NIS</th>
@@ -45,13 +45,13 @@
                         <td class="text-center">{{$data->no_hp}}</td>
                         <td class="text-center">{{$data->kelas->nama_kelas}}</td>
                         <td class="text-center">
-                            <form action="{{ route('hapusSiswa', $data->id) }}" method="post">
+                            <a href="{{ route('formUbahSiswa', $data->id) }}" class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">Ubah</a>
+
+                            <form action="{{ route('hapusSiswa', $data->id) }}" method="post" class="inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" onclick="return confirm('Yakin?')" class="bg-red-600 py-2 px-2 rounded-none text-white hover:bg-red-800">Hapus</button>
+                                <button type="submit" onclick="return confirm('Yakin?')" class="inline-flex items-center px-4 py-2 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-600 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">Hapus</button>
                             </form>
-
-                            {{-- <a href="" class="bg-green-600 py-2 px-2 rounded-none text-white hover:bg-green-800">Ubah</a> --}}
                         </td>
                     </tr>
                 @endforeach
@@ -62,7 +62,7 @@
     <!-- Add this script at the end of your <body> -->
     <script>
         $(document).ready(function() {
-            $('#kelasTable').DataTable();
+            $('#siswaTable').DataTable();
         });
     </script>
 

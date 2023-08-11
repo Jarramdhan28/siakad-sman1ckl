@@ -53,7 +53,6 @@ class GuruController extends Controller
 
     public function show($id)
     {
-
         $guru = Guru::findOrFail($id);
         $pelajaran = Pelajaran::all();
         return view('admin.ubah-guru', compact('guru', 'pelajaran'));
@@ -73,7 +72,6 @@ class GuruController extends Controller
             'role' => $request->role
         ]);
 
-        // Redirect with success message
         return redirect()->route('adminGuru')->with('success', 'Guru Berhasil Diupdate successfully.');
     }
 }

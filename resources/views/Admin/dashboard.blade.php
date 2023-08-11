@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="ml-4 pt-3">
-                        <h2 class="font-semibold">574 Guru</h2>
+                        <h2 class="font-semibold">{{$guru}} Guru</h2>
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="ml-4 pt-3">
-                        <h2 class="font-semibold">1829 Siswa</h2>
+                        <h2 class="font-semibold">{{$siswa}} Siswa</h2>
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="ml-4 pt-3">
-                        <h2 class="font-semibold">548 Pelajaran</h2>
+                        <h2 class="font-semibold">{{$pelajaran}} Pelajaran</h2>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="ml-4 pt-3">
-                        <h2 class="font-semibold">129 Kelas</h2>
+                        <h2 class="font-semibold">{{$kelas}} Kelas</h2>
                     </div>
                 </div>
             </div>
