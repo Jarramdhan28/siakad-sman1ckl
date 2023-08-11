@@ -40,7 +40,7 @@
                         <div>
                         <button type="button" class="flex text-sm bg-white-800 focus:ring-4 focus:ring-white-300 py-2 px-2" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
-                            <span>{{ Auth::guru()->nama_guru }}</span>
+                            <span></span>
                         </button>
                         </div>
                         <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
