@@ -7,7 +7,6 @@ use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\Pelajaran;
 use App\Models\Siswa;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
