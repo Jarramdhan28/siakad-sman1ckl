@@ -21,37 +21,24 @@ class PelajaranController extends Controller
 
     public function store(Request $request)
     {
-        $pelajaran = Pelajaran::create([
-            'nip' => $request->nip,
-            'nama_pelajaran' => $request->nama_pelajaran,
-        ]);
-
-        session()->flash('success', 'Data Pelajaran Berhasil Disimpan');
-
-        return redirect()->route('adminPelajaran');
+        Pelajaran::create($request->only('nama_pelajaran'));
+        return redirect()->route('pelajaran.index')->with('success', 'Data pelajaran berhasil di simpan!');
     }
 
-    public function hapus($id)
+    public function destroy(Pelajaran $pelajaran)
     {
-        $pelajaran = Pelajaran::findOrFail($id);
-
         $pelajaran->delete();
-
-        return redirect()->route('adminPelajaran')->with('success', 'Pelajaran Berhasil Dihapus');
+        return redirect()->route('pelajaran.index')->with('success', 'Pelajaran Berhasil Dihapus');
     }
 
-    public function show($id)
+    public function edit(Pelajaran $pelajaran)
     {
-        $pelajaran = Pelajaran::findOrFail($id);
         return view('admin.ubah-pelajaran', compact('pelajaran'));
     }
 
-    public function ubah(Request $request, $id)
+    public function update(Request $request, Pelajaran $pelajaran)
     {
-        $pelajaran = Pelajaran::where('id', $request->id)->update([
-            'nama_pelajaran' => $request->nama_pelajaran,
-        ]);
-
-        return redirect()->route('adminPelajaran')->with('success', 'Pelajaran Berhasil Diupdate successfully.');
+        $pelajaran->update($request->only('nama_pelajaran'));
+        return redirect()->route('pelajaran.index')->with('success', 'Pelajaran Berhasil Diupdate successfully.');
     }
 }

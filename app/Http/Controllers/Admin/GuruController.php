@@ -37,30 +37,24 @@ class GuruController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        session()->flash('success', 'Data Guru Berhasil Disimpan');
-
-        return redirect()->route('adminGuru');
+        return redirect()->route('guru.index')->with('success', 'Data Guru Berhasil Disimpan');
     }
 
-    public function hapus($id)
+    public function destroy(Guru $guru)
     {
-        $guru = Guru::findOrFail($id);
-
         $guru->delete();
-
-        return redirect()->route('adminGuru')->with('success', 'Guru Berhasil Dihapus');
+        return redirect()->route('guru.index')->with('success', 'Guru Berhasil Dihapus');
     }
 
-    public function show($id)
+    public function edit(Guru $guru)
     {
-        $guru = Guru::findOrFail($id);
         $pelajaran = Pelajaran::all();
         return view('admin.ubah-guru', compact('guru', 'pelajaran'));
     }
 
-    public function ubah(Request $request, $id)
+    public function update(Request $request, Guru $guru)
     {
-        $guru = Guru::where('id', $request->id)->update([
+        $guru->update([
             'nip' => $request->nip,
             'nama_guru' => $request->nama_guru,
             'tanggal_lahir' => $request->tanggal_lahir,
@@ -72,6 +66,6 @@ class GuruController extends Controller
             'role' => $request->role
         ]);
 
-        return redirect()->route('adminGuru')->with('success', 'Guru Berhasil Diupdate successfully.');
+        return redirect()->route('guru.index')->with('success', 'Guru Berhasil Diupdate successfully.');
     }
 }

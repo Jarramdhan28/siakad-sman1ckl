@@ -21,37 +21,24 @@ class KelasController extends Controller
 
     public function store(Request $request)
     {
-        $kelas = Kelas::create([
-            'nip' => $request->nip,
-            'nama_kelas' => $request->nama_kelas,
-        ]);
-
-        session()->flash('success', 'Data Kelas Berhasil Disimpan');
-
-        return redirect()->route('adminKelas');
+        Kelas::create($request->only('nama_kelas'));
+        return redirect()->route('kelas.index')->with('success', 'Data Kelas Berhasil Disimpan');
     }
 
-    public function hapus($id)
+    public function destroy(Kelas $kelas)
     {
-        $kelas = Kelas::findOrFail($id);
-
         $kelas->delete();
-
-        return redirect()->route('adminKelas')->with('success', 'Kelas Berhasil Dihapus');
+        return redirect()->route('kelas.index')->with('success', 'Kelas Berhasil Dihapus');
     }
 
-    public function show($id)
+    public function edit(Kelas $kelas)
     {
-        $kelas = Kelas::findOrFail($id);
         return view('admin.ubah-kelas', compact('kelas'));
     }
 
-    public function ubah(Request $request, $id)
+    public function update(Request $request, Kelas $kelas)
     {
-        $kelas = Kelas::where('id', $request->id)->update([
-            'nama_kelas' => $request->nama_kelas,
-        ]);
-
-        return redirect()->route('adminKelas')->with('success', 'Kelas Berhasil Diupdate successfully.');
+        $kelas->update($request->only('nama_kelas'));
+        return redirect()->route('kelas.index')->with('success', 'Kelas Berhasil Diupdate successfully.');
     }
 }

@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Kelas;
+use App\Models\Siswa;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +21,11 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $dataKelas = collect(['X.MIPA. 1', 'X.MIPA. 2', 'X.MIPA. 3', 'X.IPS. 1', 'X.IPS. 2', 'X.IPS. 3', 'XI. MIA. 1', 'XI. MIA 2']);
+        $dataKelas->each(function($namaKelas){
+            Kelas::create(['nama_kelas' => $namaKelas])->each(function($kelas){
+                Siswa::factory(15)->create(['kelas_id' => $kelas->id]);
+            });
+        });
     }
 }
