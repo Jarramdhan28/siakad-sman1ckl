@@ -3,13 +3,9 @@
 namespace App\Http\Controllers\Auth\AdminGuru;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginGuruRequest;
-use App\Models\Guru;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class AuthSessionGuru extends Controller
 {
@@ -22,8 +18,8 @@ class AuthSessionGuru extends Controller
     {
         $credentials = $request->only('nip', 'password');
 
-        if (Auth::guard('guru')->attempt($credentials)) {
-            dd(Session::all());
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
             return redirect('/admin/dashboard');
         } else {
             return back()->withErrors(['nip' => 'NIP atau password salah.']);

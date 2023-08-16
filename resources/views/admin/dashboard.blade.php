@@ -14,8 +14,8 @@
                         </svg>
                     </div>
 
-                    <div class="ml-4 pt-3">
-                        <h2 class="font-semibold">{{$guru}} Guru</h2>
+                    <div class="ml-4 pt-3" x-data="">
+                        <h2 class="font-semibold">{{ $guru }} Guru</h2>
                     </div>
                 </div>
 
