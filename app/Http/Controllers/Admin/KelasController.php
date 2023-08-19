@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kelas;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -39,6 +40,12 @@ class KelasController extends Controller
     public function update(Request $request, Kelas $kelas)
     {
         $kelas->update($request->only('nama_kelas'));
-        return redirect()->route('kelas.index')->with('success', 'Kelas Berhasil Diupdate successfully.');
+        return redirect()->route('kelas.index')->with('success', 'Kelas Berhasil Diupdate');
+    }
+
+    public function show(Kelas $kelas)
+    {
+        $siswa = Siswa::all()->where('kelas_id', $kelas->id);
+        return view('admin.lihat-kelas', compact('kelas','siswa'));
     }
 }

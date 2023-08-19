@@ -1,6 +1,7 @@
 <x-admin-layout>
     <div class="pb-6 pt-1">
-        <span class="font-bold text-4xl">Halaman Data Siswa</span>
+        <p class="font-bold md:text-5xl text-2xl">Halaman Data Siswa</p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Ini merupakan Data Siswa yang ada di SMAN 1 Cikalong</p>
     </div>
 
     <div class="bg-white shadow-xl rounded-xl py-4 px-7 border border-gray-100">
@@ -17,7 +18,7 @@
         </div>
         @endif
         <div class="pb-6">
-            <a href="{{ route('siswa.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Tambah Data Siswa</a>
+            <a href="{{ route('siswa.create') }}" class="inline-flex items-center px-2 py-1 md:px-4 md:py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Tambah Data Siswa</a>
         </div>
         <div>
             <table id="datatable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
@@ -26,6 +27,8 @@
                         <th scope="col" class="px-6 py-3">NIS</th>
                         <th scope="col" class="px-6 py-3">Nama</th>
                         <th scope="col" class="px-6 py-3">Jenis Kelamin</th>
+                        <th scope="col" class="px-6 py-3">Alamat</th>
+                        <th scope="col" class="px-6 py-3">Email</th>
                         <th scope="col" class="px-6 py-3">No HP</th>
                         <th scope="col" class="px-6 py-3">Kelas</th>
                         <th scope="col" class="px-6 py-3">Aksi</th>
@@ -37,15 +40,26 @@
                             <td class="text-center">{{$data->nis}}</td>
                             <td class="text-center">{{$data->nama_siswa}}</td>
                             <td class="text-center">{{$data->jenis_kelamin}}</td>
+                            <td class="text-center">{{$data->alamat}}</td>
+                            <td class="text-center">{{$data->email}}</td>
                             <td class="text-center">{{$data->no_hp}}</td>
                             <td class="text-center">{{$data->kelas->nama_kelas}}</td>
                             <td class="text-center">
-                                <a href="{{ route('siswa.edit', $data->id) }}" class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">Ubah</a>
-                                <form action="{{ route('siswa.destroy', $data->id) }}" method="post" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Yakin?')" class="inline-flex items-center px-4 py-2 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-600 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">Hapus</button>
-                                </form>
+                                <div class="flex flex-col">
+                                    <div class="grid-col-2 gap-4 lg:grid-cols-1">
+                                        <div class="pb-2">
+                                            <a href="{{ route('siswa.edit', $data->id) }}" class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">Ubah</a>
+                                        </div>
+
+                                        <div>
+                                            <form action="{{ route('siswa.destroy', $data->id) }}" method="post" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" onclick="return confirm('Yakin?')" class="inline-flex items-center px-4 py-2 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-600 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">Hapus</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

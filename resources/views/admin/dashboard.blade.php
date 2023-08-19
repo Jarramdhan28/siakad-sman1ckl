@@ -1,6 +1,7 @@
 <x-admin-layout>
     <div class="pb-6 pt-1">
-        <span class="font-bold text-4xl">Selamat Datang Di SMAN 1 Cikalong</span>
+        <p class="font-bold md:text-5xl text-2xl">Selamat Datang Di SMAN 1 Cikalong</p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Ini merupakan jumlah data Guru, Siswa, Mata Pelajaran, dan Kelas</p>
     </div>
 
     <div class="main">

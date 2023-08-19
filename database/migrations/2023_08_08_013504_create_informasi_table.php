@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('informasi', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->date('tanggal');
+            $table->string('tanggal');
             $table->text('isi');
             $table->timestamps();
         });

@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $dataKelas = collect(['X.MIPA. 1', 'X.MIPA. 2', 'X.MIPA. 3', 'X.IPS. 1', 'X.IPS. 2', 'X.IPS. 3', 'XI. MIA. 1', 'XI. MIA 2']);
         $dataKelas->each(function($namaKelas){
             Kelas::create(['nama_kelas' => $namaKelas])->each(function($kelas){
-                Siswa::factory(15)->create(['kelas_id' => $kelas->id]);
+                Siswa::factory(10)->create(['kelas_id' => $kelas->id]);
             });
         });
     }

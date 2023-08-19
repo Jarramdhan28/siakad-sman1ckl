@@ -1,6 +1,7 @@
 <x-admin-layout>
     <div class="pb-6 pt-1">
-        <span class="font-bold text-4xl">Halaman Data Kelas</span>
+        <p class="font-bold md:text-5xl text-2xl">Halaman Data Kelas</p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Ini merupakan Data Kelas yang ada di SMAN 1 Cikalong</p>
     </div>
 
     <div class="bg-white shadow-xl rounded-xl py-4 px-7 border border-gray-100">
@@ -35,11 +36,15 @@
                             <td class="text-center">{{$data->nama_kelas}}</td>
                             <td class="text-center">
                                 <a href="{{ route('kelas.edit', $data->id) }}" class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">Ubah</a>
+
                                 <form action="{{ route('kelas.destroy', $data->id) }}" method="post" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" onclick="return confirm('Yakin?')" class="inline-flex items-center px-4 py-2 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-600 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">Hapus</button>
                                 </form>
+
+                                <a href="{{ route('kelas.show', $data->id) }}" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">LIhat Data Siswa</a>
+                        </td>
                             </td>
                         </tr>
                     @endforeach
