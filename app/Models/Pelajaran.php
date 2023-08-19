@@ -15,4 +15,9 @@ class Pelajaran extends Model
     {
         return $this->hasMany(Guru::class);
     }
+
+    public function kelas()
+    {
+        return $this->belongsToMany(Kelas::class, 'belajar');
+    }
 }

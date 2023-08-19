@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PelajaranRequest;
 use App\Models\Pelajaran;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,9 @@ class PelajaranController extends Controller
         return view('admin.tambah-pelajaran');
     }
 
-    public function store(Request $request)
+    public function store(PelajaranRequest $request)
     {
-        Pelajaran::create($request->only('nama_pelajaran'));
+        $pel = Pelajaran::create($request->only('nama_pelajaran'));
         return redirect()->route('pelajaran.index')->with('success', 'Data pelajaran berhasil di simpan!');
     }
 
@@ -36,7 +37,7 @@ class PelajaranController extends Controller
         return view('admin.ubah-pelajaran', compact('pelajaran'));
     }
 
-    public function update(Request $request, Pelajaran $pelajaran)
+    public function update(PelajaranRequest $request, Pelajaran $pelajaran)
     {
         $pelajaran->update($request->only('nama_pelajaran'));
         return redirect()->route('pelajaran.index')->with('success', 'Pelajaran Berhasil Diupdate successfully.');
