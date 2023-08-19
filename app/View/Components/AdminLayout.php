@@ -21,6 +21,7 @@ class AdminLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.admin');
+        $role = auth()->user()->role;
+        return view('layouts.admin', compact('role'));
     }
 }

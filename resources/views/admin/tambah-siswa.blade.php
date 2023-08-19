@@ -27,11 +27,11 @@
 
             <div class="mt-4">
                 <x-input-label for="jenis_kelamin" :value="__('Jenis Kelamin')" />
-                <select name="jenis_kelamin" id="jenis_kelamin" class="block mt-1 w-full rounded-md shadow-sm border-gray-300">
-                    <option value="" selected disabled>-- Jenis Kelamin --</option>
+                <x-select name="jenis_kelamin" id="jenis_kelamin" class="block mt-1 w-full">
+                    <option value="" selected disabled hidden>-- Jenis Kelamin --</option>
                     <option value="Laki-laki">Laki-laki</option>
                     <option value="Perempuan">Perempuan</option>
-                </select>
+                </x-select>
                 <x-input-error :messages="$errors->get('jenis_kelamin')" class="mt-2" />
             </div>
             {{-- Alamat --}}
@@ -58,12 +58,12 @@
             {{-- Kelas --}}
             <div class="mt-4">
                 <x-input-label for="kelas_id" :value="__('Kelas')" />
-                <select name="kelas_id" id="kelas_id" class="block mt-1 w-full rounded-md shadow-sm border-gray-300">
-                    <option value="" selected disabled>-- Kelas --</option>
+                <x-select name="kelas_id" id="kelas_id" class="block mt-1 w-full">
+                    <option value="" selected disabled hidden>-- Kelas --</option>
                     @foreach ($kelas as $data )
                         <option value="{{$data->id}}">{{$data->nama_kelas}}</option>
                     @endforeach
-                </select>
+                </x-select>
             </div>
             <!-- Password -->
             <div class="mt-4">
@@ -89,7 +89,7 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a href="{{ route('siswa.index')}}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Kembali</a>
+                <x-primary-button href="{{ route('siswa.index')}}">Kembali</x-primary-button>
 
                 <x-primary-button class="ml-4">
                     {{ __('Tambah Data Siswa') }}
