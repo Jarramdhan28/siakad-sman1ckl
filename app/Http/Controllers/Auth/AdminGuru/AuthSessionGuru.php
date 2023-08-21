@@ -20,7 +20,11 @@ class AuthSessionGuru extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('/admin/dashboard');
+            if($request->user()->role === '1'){
+                return redirect()->route('guruDashboard');
+            }else if($request->user()->role === '0'){
+                return redirect()->route('guruDashboard');
+            }
         } else {
             return back()->withErrors(['nip' => 'NIP atau password salah.']);
         }
