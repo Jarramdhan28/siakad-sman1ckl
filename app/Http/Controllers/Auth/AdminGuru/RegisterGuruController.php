@@ -45,6 +45,6 @@ class RegisterGuruController extends Controller
         ]);
 
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('admin/dashboard');
     }
 }
