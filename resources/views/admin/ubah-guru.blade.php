@@ -8,7 +8,7 @@
             @csrf
             @method('put')
             <div class="mt-4">
-                <x-input-label for="nip" :value="__('NIP')" />
+                <x-input-label for="nip" :value="__('NIP/NUPTK')" />
                 <x-text-input id="nip" class="block mt-1 w-full" type="text" name="nip" value="{{ $guru->nip }}" required autofocus autocomplete="nip" />
                 <x-input-error :messages="$errors->get('nip')" class="mt-2" />
             </div>

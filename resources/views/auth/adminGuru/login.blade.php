@@ -7,7 +7,7 @@
 
         <!-- nip Address -->
         <div>
-            <x-input-label for="nip" :value="__('NIP')" />
+            <x-input-label for="nip" :value="__('NIP/NUPTK')" />
             <x-text-input id="nip" class="block mt-1 w-full" type="text" name="nip" :value="old('nip')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('nip')" class="mt-2" />
         </div>

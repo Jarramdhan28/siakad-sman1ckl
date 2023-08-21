@@ -24,7 +24,7 @@
             <table id="datatable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                 <thead class="bg-gray-100">
                     <tr>
-                        <th scope="col" class="px-6 py-3">NIP</th>
+                        <th scope="col" class="px-6 py-3">NIP/NUPTK</th>
                         <th scope="col" class="px-6 py-3">Nama</th>
                         <th scope="col" class="px-6 py-3">Jenis Kelamin</th>
                         <th scope="col" class="px-6 py-3">Alamat</th>

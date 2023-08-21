@@ -75,28 +75,32 @@ Route::middleware('auth')->group(function(){
         });
     });
 
-    Route::controller(AbsensiController::class)->group(function(){
-        Route::get('/absensi', 'index')->name('absensi.index');
-        Route::post('/absensi', 'store')->name('absensi.store');
-        Route::get('/absensi/{kelas}/{tanggal}', 'show')->name('absensi.show');
-        Route::put('/absensi/{absensi}', 'updateKeterangan')->name('absensi.update');
-        Route::delete('/absensi/{kelas}/{tanggal}', 'destroy')->name('absensi.destroy');
-    });
+    Route::middleware('can:guru')->group(function(){
+        Route::get('/guru/dashboard', [DashboardController::class, 'guru'])->name('guruDashboard');
 
-    Route::controller(NilaiUlanganController::class)->group(function(){
-        Route::get('/nilai-ulangan', 'index')->name('nilai-ulangan.index');
-        Route::get('/nilai-ulangan/create', 'create')->name('nilai-ulangan.create');
-        Route::post('/nilai-ulangan', 'store')->name('nilai-ulangan.store');
-        Route::get('/nilai-ulangan/{siswa}/edit', 'edit')->name('nilai-ulangan.edit');
-        Route::put('/nilai-ulangan/{siswa}', 'update')->name('nilai-ulangan.update');
-    });
-
-    Route::controller(NilaiAkhirController::class)->group(function(){
-        Route::get('/nilai-akhir', 'index')->name('nilai-akhir.index');
-        Route::get('/nilai-akhir/create', 'create')->name('nilai-akhir.create');
-        Route::post('/nilai-akhir', 'store')->name('nilai-akhir.store');
-        Route::get('/nilai-akhir/{siswa}/edit', 'edit')->name('nilai-akhir.edit');
-        Route::put('/nilai-ulangan/{siswa}', 'update')->name('nilai-akhir.update');
+        Route::controller(AbsensiController::class)->group(function(){
+            Route::get('/absensi', 'index')->name('absensi.index');
+            Route::post('/absensi', 'store')->name('absensi.store');
+            Route::get('/absensi/{kelas}/{tanggal}', 'show')->name('absensi.show');
+            Route::put('/absensi/{absensi}', 'updateKeterangan')->name('absensi.update');
+            Route::delete('/absensi/{kelas}/{tanggal}', 'destroy')->name('absensi.destroy');
+        });
+    
+        Route::controller(NilaiUlanganController::class)->group(function(){
+            Route::get('/nilai-ulangan', 'index')->name('nilai-ulangan.index');
+            Route::get('/nilai-ulangan/create', 'create')->name('nilai-ulangan.create');
+            Route::post('/nilai-ulangan', 'store')->name('nilai-ulangan.store');
+            Route::get('/nilai-ulangan/{siswa}/edit', 'edit')->name('nilai-ulangan.edit');
+            Route::put('/nilai-ulangan/{siswa}', 'update')->name('nilai-ulangan.update');
+        });
+    
+        Route::controller(NilaiAkhirController::class)->group(function(){
+            Route::get('/nilai-akhir', 'index')->name('nilai-akhir.index');
+            Route::get('/nilai-akhir/create', 'create')->name('nilai-akhir.create');
+            Route::post('/nilai-akhir', 'store')->name('nilai-akhir.store');
+            Route::get('/nilai-akhir/{siswa}/edit', 'edit')->name('nilai-akhir.edit');
+            Route::put('/nilai-ulangan/{siswa}', 'update')->name('nilai-akhir.update');
+        });
     });
 
     Route::get('/getSiswaByKelas/{kelas}',[SiswaController::class, 'getByKelas'])->name('siswa.getByKelas');

@@ -13,7 +13,7 @@ class pelajaranSeeder extends Seeder
      */
     public function run(): void
     {
-        $dataPelajaran = collect(['Bahasa Indonesia', 'Bahasa Inggris', 'Pendidikan Kewarganegaraan', 'Matematika', 'Biologi', 'Fisika', 'Kimia']);
+        $dataPelajaran = collect(['Bahasa Indonesia', 'Bahasa Inggris', 'Pendidikan Kewarganegaraan', 'Matematika', 'Biologi', 'Fisika', 'Kimia', 'PJOK', 'Seni Budaya', 'BK IT', 'Bimbingan dan Konseling', 'PAI', 'Sejarah Indonesia', 'Sosiologi', 'Ekonomi', 'PKWU']);
         $dataPelajaran->each(function($pelajaran){
             Pelajaran::create(['nama_pelajaran' => $pelajaran]);
         });
