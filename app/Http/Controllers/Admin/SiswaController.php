@@ -69,4 +69,9 @@ class SiswaController extends Controller
 
         return redirect()->route('siswa.index')->with('success', 'Siswa Berhasil Diupdate successfully.');
     }
+
+    public function getByKelas(Kelas $kelas)
+    {
+        return response()->json(Siswa::where('kelas_id', $kelas->id)->orderBy('nama_siswa')->get());
+    }
 }

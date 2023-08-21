@@ -16,4 +16,14 @@ class Siswa extends Model
     {
         return $this->belongsTo(Kelas::class);
     }
+
+    public function nilaiUlangan()
+    {
+        return $this->hasMany(NilaiUlangan::class);
+    }
+
+    public function nilaiAkhir()
+    {
+        return $this->hasMany(NilaiAkhir::class);
+    }
 }
