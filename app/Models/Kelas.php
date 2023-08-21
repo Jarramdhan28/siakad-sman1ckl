@@ -16,4 +16,14 @@ class Kelas extends Model
     {
         return $this->hasMany(Siswa::class);
     }
+
+    public function pelajaran()
+    {
+        return $this->belongsToMany(Pelajaran::class, 'belajar');
+    }
+
+    public function absensi()
+    {
+        return $this->hasManyThrough(Absensi::class, Siswa::class);
+    }
 }

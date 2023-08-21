@@ -35,11 +35,11 @@
                             <td class="text-center">{{$loop->iteration}}</td>
                             <td class="text-center">{{$data->nama_pelajaran}}</td>
                             <td class="text-center">
-                                <a href="{{ route('pelajaran.edit', $data->id) }}" class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">Ubah</a>
+                                <x-success-button href="{{ route('pelajaran.edit', $data->id) }}">Ubah</x-success-button>
                                 <form action="{{ route('pelajaran.destroy', $data->id) }}" method="post" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Yakin?')" class="inline-flex items-center px-4 py-2 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-600 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">Hapus</button>
+                                    <x-danger-button type="submit" onclick="return confirm('yakin?')">Hapus</x-danger-button>
                                 </form>
                             </td>
                         </tr>

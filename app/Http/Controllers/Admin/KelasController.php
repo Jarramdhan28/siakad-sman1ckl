@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\KelasRequest;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class KelasController extends Controller
         return view('admin.tambah-kelas');
     }
 
-    public function store(Request $request)
+    public function store(KelasRequest $request)
     {
         Kelas::create($request->only('nama_kelas'));
         return redirect()->route('kelas.index')->with('success', 'Data Kelas Berhasil Disimpan');
@@ -37,7 +38,7 @@ class KelasController extends Controller
         return view('admin.ubah-kelas', compact('kelas'));
     }
 
-    public function update(Request $request, Kelas $kelas)
+    public function update(KelasRequest $request, Kelas $kelas)
     {
         $kelas->update($request->only('nama_kelas'));
         return redirect()->route('kelas.index')->with('success', 'Kelas Berhasil Diupdate');

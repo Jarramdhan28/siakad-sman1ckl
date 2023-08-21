@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\Admin\BelajarController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Admin\InformasiController;
@@ -7,10 +9,6 @@ use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\PelajaranController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Siswa\InformasiSiswaController;
-use App\Models\Informasi;
-use App\Models\Kelas;
-use App\Models\Siswa;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,30 +40,48 @@ Route::middleware('auth')->group(function () {
 // });
 
 Route::middleware('auth')->group(function(){
-    // Admin Controller
-    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('adminDashboard');
 
-    // Admin Controller Guru
-    Route::resource('guru', GuruController::class)->except('show');
+    Route::middleware('can:admin')->group(function(){
+        // Admin Controller
+        Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('adminDashboard');
 
-    // Admin Controller Siswa
-    Route::resource('siswa', SiswaController::class)->except('show');
+        // Admin Controller Guru
+        Route::resource('guru', GuruController::class)->except('show');
 
-    // Admin Controller Kelas
-    Route::resource('kelas', KelasController::class)->parameters([
-        'kelas' => 'kelas'
-    ]);
+        // Admin Controller Siswa
+        Route::resource('siswa', SiswaController::class)->except('show');
 
-    // Admin Controller Pelajaran
-    Route::resource('pelajaran', PelajaranController::class)->except('show');
+        // Admin Controller Kelas
+        Route::resource('kelas', KelasController::class)->parameters([
+            'kelas' => 'kelas'
+        ]);
 
-    // Admin Controller Informasi
-    Route::resource('informasi', InformasiController::class);
+        // Admin Controller Pelajaran
+        Route::resource('pelajaran', PelajaranController::class)->except('show');
 
+        // Admin Controller Informasi
+        Route::resource('informasi', InformasiController::class);
+
+        // Controller Belajar
+        Route::controller(BelajarController::class)->group(function(){
+            Route::get('/belajar', 'index')->name('belajar.index');
+            Route::get('/belajar/create', 'create')->name('belajar.create');
+            Route::post('/belajar', 'store')->name('belajar.store');
+            Route::get('/belajar/{kelas}/edit', 'edit')->name('belajar.edit');
+            Route::put('/belajar/{kelas}', 'update')->name('belajar.update');
+            Route::delete('/belajar/{kelas}', 'destroy')->name('belajar.destroy');
+        });
+    });
+
+    Route::controller(AbsensiController::class)->group(function(){
+        Route::get('/absensi', 'index')->name('absensi.index');
+        Route::post('/absensi', 'store')->name('absensi.store');
+        Route::get('/absensi/{kelas}/{tanggal}', 'show')->name('absensi.show');
+        Route::put('/absensi/{absensi}', 'updateKeterangan')->name('absensi.update');
+        Route::delete('/absensi/{kelas}/{tanggal}', 'destroy')->name('absensi.destroy');
+    });
 });
 
 Route::get('/siswa/informasi', [InformasiSiswaController::class, 'index'])->name('siswaInformasi');
 
 require __DIR__.'/auth.php';
-
-

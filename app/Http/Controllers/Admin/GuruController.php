@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GuruRequest;
 use App\Models\Guru;
 use App\Models\Pelajaran;
 use Illuminate\Http\Request;
@@ -22,9 +23,9 @@ class GuruController extends Controller
         return view('admin.tambah-guru', compact('pelajaran'));
     }
 
-    public function store(Request $request)
+    public function store(GuruRequest $request)
     {
-        $guru = Guru::create([
+        Guru::create([
             'nip' => $request->nip,
             'nama_guru' => $request->nama_guru,
             'tanggal_lahir' => $request->tanggal_lahir,
@@ -52,7 +53,7 @@ class GuruController extends Controller
         return view('admin.ubah-guru', compact('guru', 'pelajaran'));
     }
 
-    public function update(Request $request, Guru $guru)
+    public function update(GuruRequest $request, Guru $guru)
     {
         $guru->update([
             'nip' => $request->nip,
