@@ -170,14 +170,24 @@
                             <span class="flex-1 ml-3 whitespace-nowrap">Data Informasi</span>
                         </a>
                     </li>
-                @endif
+                    @endif
 
-                @if ($role === '0')
+
+                    @if ($role === '0')
+                    <li>
+                        <a href="{{ route('informasiGuru')}}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="none" viewBox="0 0 18 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M12 2h4a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4m6 0v3H6V2m6 0a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1M5 5h8m-5 5h5m-8 0h.01M5 14h.01M8 14h5"/>
+                            </svg>
+                            <span class="flex-1 ml-3 whitespace-nowrap">Informasi Terbaru</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('absensi.index') }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
-                            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
@@ -199,6 +209,14 @@
                         <li class="py-2"><a href="{{ route('nilai-akhir.index') }}"
                                 class="hover:text-gray-900">Nilai Akhir</a></li>
                     </x-dropdown-menu>
+                    <li>
+                        <a href="{{ route('profile.index', Auth::user()->id)}}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.109 17H1v-2a4 4 0 0 1 4-4h.87M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm7.95 2.55a2 2 0 0 1 0 2.829l-6.364 6.364-3.536.707.707-3.536 6.364-6.364a2 2 0 0 1 2.829 0Z"/>
+                            </svg>
+                            <span class="flex-1 ml-3 whitespace-nowrap">Profile</span>
+                        </a>
+                    </li>
                 @endif
 
                 <li>

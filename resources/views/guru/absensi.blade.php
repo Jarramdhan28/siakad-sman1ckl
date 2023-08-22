@@ -1,7 +1,8 @@
 <x-admin-layout>
     @inject('carbon', 'Carbon\Carbon')
     <div class="pb-6 pt-1">
-        <span class="font-bold text-4xl">Halaman Data Absensi</span>
+        <p class="font-bold md:text-5xl text-2xl">Halaman Data Absensi</span></p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Silahkan Lakukan Absen pada sesuai Kelas yang diajar</p>
     </div>
 
     <div class="bg-white shadow-xl rounded-xl py-4 px-7 border border-gray-100">
@@ -64,7 +65,7 @@
         <form method="post" action="{{ route('absensi.store') }}" class="p-6">
             @csrf
             <h2 class="text-lg font-medium text-gray-900">
-                {{ __('Tambah Absensi ' . auth()->user()->pelajaran->nama_pelajaran) }}
+                {{ __('Tambah Absensi Pelajaran ' . auth()->user()->pelajaran->nama_pelajaran) }}
             </h2>
 
             <div class="mt-4">

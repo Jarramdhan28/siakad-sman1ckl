@@ -1,6 +1,7 @@
 <x-admin-layout>
     <div class="pb-6 pt-1">
-        <span class="font-bold text-4xl">Tambah Data Guru</span>
+        <p class="font-bold md:text-5xl text-2xl">Halaman Tambah Data Guru</p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Silahkan Masukan Data Guru dengan Benar</p>
     </div>
 
     <div class="w-full max-w-xll p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
@@ -101,7 +102,7 @@
                 <x-secondary-button href="{{ route('guru.index') }}">Kembali</x-primary-button>
 
                 <x-blue-button class="ml-4">
-                    {{ __('Tambah Data Guru') }}
+                    {{ __('Simpan') }}
                 </x-blue-button>
             </div>
         </form>

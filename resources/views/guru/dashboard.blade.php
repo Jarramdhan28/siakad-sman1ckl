@@ -1,6 +1,7 @@
 <x-admin-layout>
     <div class="pb-6 pt-1">
-        <span class="font-bold text-4xl">Selamat Datang Di SMAN 1 Cikalong</span>
+        <p class="font-bold md:text-5xl text-2xl">Selamat Datang <span class="font-semibold">{{Auth::user()->nama_guru}}</span></p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Ini merupakan Halaman Dashboard Guru untuk Mengelola Data Siswa</p>
     </div>
 
     <div class="main">

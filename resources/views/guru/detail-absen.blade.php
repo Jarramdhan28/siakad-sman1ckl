@@ -1,6 +1,7 @@
 <x-admin-layout>
   <div class="pb-6 pt-1">
-      <span class="font-bold text-4xl">Halaman Data Absensi</span>
+        <p class="font-bold md:text-5xl text-2xl">Halaman Data Absensi</span></p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Silahkan isi Absensi Sesuai Dengan keterangan yang ada</p>
   </div>
 
   <div class="bg-white shadow-xl rounded-xl py-4 px-7 border border-gray-100">
@@ -53,7 +54,10 @@
                   @endforeach
               </tbody>
           </table>
-      </div>
+        </div>
+        <div class="flex items-center justify-end mt-8">
+            <x-blue-button href="{{ route('absensi.index') }}">Simpan</x-primary-button>
+        </div>
   </div>
   <script>
     function dataAbsen(){

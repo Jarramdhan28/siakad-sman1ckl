@@ -4,7 +4,7 @@
         <p class="text-gray-500 py-1 text-xs md:text-lg">Ini merupakan Halaman Infromasi yang dapat diisi oleh Admin</p>
     </div>
 
-     @if(session('success'))
+    @if(session('success'))
     <div class="bg-green-100 border border-green-200 text-green-700 px-4 py-3 mb-3 rounded relative" role="alert">
         <strong class="font-bold">Berhasil!</strong>
         <span class="block sm:inline">{{ session('success') }}</span>

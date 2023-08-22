@@ -1,6 +1,7 @@
 <x-admin-layout>
   <div class="pb-6 pt-1">
-      <span class="font-bold text-4xl">Halaman Data Nilai Ulangan</span>
+        <p class="font-bold md:text-5xl text-2xl">Halaman Data Nilai Ujian</span></p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Silahkan Masukan Nilai Tugas, Nilai Ulangan, Nilai UTS, dan Nilai UAS</p>
   </div>
 
   <div class="bg-white shadow-xl rounded-xl py-4 px-7 border border-gray-100">
@@ -21,7 +22,7 @@
           </div>
       @endif
       <div class="pb-4 flex justify-between items-center">
-          <x-blue-button href="{{ route('nilai-ulangan.create') }}">Tambah Data Ulangan</x-blue-button>
+          <x-blue-button href="{{ route('nilai-ulangan.create') }}">Tambah Data Nilai Ujian</x-blue-button>
           <div class="w-full md:w-1/3 mb-4">
             <x-input-label for="kelas_id" :value="__('Kelas')" />
             <x-select name="kelas_id" id="kelas_id" class="block mt-1 w-full" x-data="{href : '{{ route('nilai-ulangan.index') }}'}" @change="window.location.href = href + '?kelas_id=' + $el.value">
