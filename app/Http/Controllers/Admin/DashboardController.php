@@ -33,4 +33,9 @@ class DashboardController extends Controller
         });
         return view('guru.dashboard', compact('kelas', 'absensi'));
     }
+
+    public function siswa()
+    {
+        return view('siswa.dashboard');
+    }
 }

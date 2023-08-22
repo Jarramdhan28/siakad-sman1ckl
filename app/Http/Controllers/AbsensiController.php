@@ -77,4 +77,17 @@ class AbsensiController extends Controller
 
         return redirect()->route('absensi.index')->with('success', 'Data absensi berhasil di hapus');
     }
+
+    public function daftarAbsensi()
+    {
+        $siswaId = auth('siswa')->user()->id;
+        $kelasId = auth('siswa')->user()->kelas_id;
+        $absensi = Pelajaran::with(['absensi' => fn(Builder $query) => $query->where('siswa_id', $siswaId)])
+                    ->whereHas('kelas', fn(Builder $query) => $query->where('kelas_id', $kelasId))
+                    ->get()->map(function($pelajaran){
+                        $pelajaran->absensi->each(fn($absen) => $pelajaran[$absen->keterangan] ? $pelajaran[$absen->keterangan] += 1 : $pelajaran[$absen->keterangan] = 1);
+                        return $pelajaran;
+                    });
+        return view('siswa.daftar-absensi', compact('absensi'));
+    }
 }
