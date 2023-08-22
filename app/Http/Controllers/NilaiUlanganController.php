@@ -70,4 +70,17 @@ class NilaiUlanganController extends Controller
         $nilaiUlangan = NilaiUlangan::where('siswa_id', $siswa->id)->where('pelajaran_id', auth()->user()->pelajaran_id)->get()->groupBy('jenis_nilai');
         return response()->json($nilaiUlangan);
     }
+    
+    public function daftarNilai()
+    {
+        $siswaId = auth('siswa')->user()->id;
+        $kelasId = auth('siswa')->user()->kelas_id;
+        $nilaiUlangan = Pelajaran::with(['nilaiUlangan' => fn(Builder $query) => $query->where('siswa_id', $siswaId)])
+        ->whereHas('kelas', fn(Builder $query) => $query->where('kelas_id', $kelasId))
+        ->get()->map(function($nilai){
+            $nilai->nilaiUlangan->groupBy('jenis_nilai')->each(fn($ulangan, $jenisNilai) => $nilai[$jenisNilai] = $ulangan->avg('nilai'));
+            return $nilai;
+        });
+        return view('siswa.daftar-nilai-ulangan', compact('nilaiUlangan'));
+    }
 }

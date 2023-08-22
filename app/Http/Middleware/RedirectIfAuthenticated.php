@@ -17,14 +17,15 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
-        $guards = empty($guards) ? [null] : $guards;
-
+        $guards = empty($guards) ? ['siswa', 'guru'] : $guards;
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if($request->user()->role === '1'){
-                    return redirect()->route('adminDashboard');
-                }else if($request->user()->role === '0'){
-                    return redirect()->route('guruDashboard');
+                if($guard === 'guru'){
+                    if($request->user()->role === '1'){
+                        return redirect()->route('adminDashboard');
+                    }else if($request->user()->role === '0'){
+                        return redirect()->route('guruDashboard');
+                    }
                 }
                 return redirect(RouteServiceProvider::HOME);
             }
