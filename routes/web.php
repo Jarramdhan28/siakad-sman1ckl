@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\PelajaranController;
 use App\Http\Controllers\NilaiAkhirController;
 use App\Http\Controllers\NilaiUlanganController;
 use App\Http\Controllers\ProfileGuruController;
+use App\Http\Controllers\ProfileSiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -40,40 +41,6 @@ Route::middleware('auth')->group(function () {
 // Guru Admin Route
 // Route::middleware('authGuru')->group(function(){
 // });
-
-Route::middleware('auth')->group(function(){
-
-    Route::middleware('can:admin')->group(function(){
-        // Admin Controller
-        Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('adminDashboard');
-
-        // Admin Controller Guru
-        Route::resource('guru', GuruController::class)->except('show');
-
-        // Admin Controller Siswa
-        Route::resource('siswa', SiswaController::class)->except('show');
-
-        // Admin Controller Kelas
-        Route::resource('kelas', KelasController::class)->parameters([
-            'kelas' => 'kelas'
-        ]);
-
-        // Admin Controller Pelajaran
-        Route::resource('pelajaran', PelajaranController::class)->except('show');
-
-        // Admin Controller Informasi
-        Route::resource('informasi', InformasiController::class);
-
-        // Controller Belajar
-        Route::controller(BelajarController::class)->group(function(){
-            Route::get('/belajar', 'index')->name('belajar.index');
-            Route::get('/belajar/create', 'create')->name('belajar.create');
-            Route::post('/belajar', 'store')->name('belajar.store');
-            Route::get('/belajar/{kelas}/edit', 'edit')->name('belajar.edit');
-            Route::put('/belajar/{kelas}', 'update')->name('belajar.update');
-            Route::delete('/belajar/{kelas}', 'destroy')->name('belajar.destroy');
-        });
-    });
 Route::middleware('admin')->group(function () {
     // Admin Controller
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('adminDashboard');
@@ -87,10 +54,13 @@ Route::middleware('admin')->group(function () {
     // Admin Controller Kelas
     Route::resource('kelas', KelasController::class)->parameters([
         'kelas' => 'kelas'
-    ])->except('show');
+    ]);
 
     // Admin Controller Pelajaran
     Route::resource('pelajaran', PelajaranController::class)->except('show');
+
+    // Admin Controller Informasi
+    Route::resource('informasi', InformasiController::class);
 
     // Controller Belajar
     Route::controller(BelajarController::class)->group(function () {
@@ -103,7 +73,8 @@ Route::middleware('admin')->group(function () {
     });
 });
 
-    Route::middleware('can:guru')->group(function(){
+// Route guru
+    Route::middleware('guru')->group(function(){
         Route::get('/guru/dashboard', [DashboardController::class, 'guru'])->name('guruDashboard');
 
         Route::controller(ProfileGuruController::class)->group(function(){
@@ -113,7 +84,6 @@ Route::middleware('admin')->group(function () {
         });
 
         Route::controller(InformasiController::class)->group(function(){
-            Route::get('/infomasi-terbaru', 'showInfo')->name('informasiGuru');
             Route::get('/infomasi-terbaru/{informasi}', 'showDetail')->name('informasiLihat');
         });
 
@@ -140,16 +110,22 @@ Route::middleware('admin')->group(function () {
             Route::get('/nilai-akhir/{siswa}/edit', 'edit')->name('nilai-akhir.edit');
             Route::put('/nilai-akhir/{siswa}', 'update')->name('nilai-akhir.update');
         });
+        Route::get('/getSiswaByKelas/{kelas}', [SiswaController::class, 'getByKelas'])->name('siswa.getByKelas');
+        Route::get('/getNilaiUlanganBySiswa/{siswa}', [NilaiUlanganController::class, 'getBySiswa'])->name('nilai-ulangan.getBySiswa');
+        Route::get('/getNilaiAkhirBySiswa/{siswa}', [NilaiAkhirController::class, 'getBySiswa'])->name('nilai-akhir.getBySiswa');
     });
-
-    Route::get('/getSiswaByKelas/{kelas}', [SiswaController::class, 'getByKelas'])->name('siswa.getByKelas');
-    Route::get('/getNilaiUlanganBySiswa/{siswa}', [NilaiUlanganController::class, 'getBySiswa'])->name('nilai-ulangan.getBySiswa');
-    Route::get('/getNilaiAkhirBySiswa/{siswa}', [NilaiAkhirController::class, 'getBySiswa'])->name('nilai-akhir.getBySiswa');
-});
 
 Route::get('/siswa/informasi', [InformasiSiswaController::class, 'index'])->name('siswaInformasi');
 
+// Route Siswa
 Route::middleware('siswa')->group(function(){
+
+    Route::controller(ProfileSiswaController::class)->group(function () {
+        Route::get('/profile-siswa', 'index')->name('profileSiswa.index');
+        Route::put('/profile-siswa/{siswa}', 'update')->name('profileSiswa.update');
+        Route::put('/profile-siswa/{siswa}/pass', 'updatePass')->name('profileSiswa.pass');
+    });
+
     Route::get('/siswa/dashboard', [DashboardController::class, 'siswa'])->name('siswaDashboard');
     Route::get('/daftar-absensi', [AbsensiController::class, 'daftarAbsensi'])->name('absensi.daftar-absensi');
     Route::get('/daftar-nilai-ulangan', [NilaiUlanganController::class, 'daftarNilai'])->name('nilai-ulangan.daftar-nilai');

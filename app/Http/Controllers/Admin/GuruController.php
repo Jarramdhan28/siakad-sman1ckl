@@ -67,6 +67,6 @@ class GuruController extends Controller
             'role' => $request->role
         ]);
 
-        return redirect()->route('guru.index')->with('success', 'Guru Berhasil Diupdate successfully.');
+        return redirect()->route('guru.index')->with('success', 'Guru Berhasil Diubah.');
     }
 }

@@ -17,7 +17,11 @@ class NilaiUlanganController extends Controller
     public function index(Request $request)
     {
         $allKelas = Pelajaran::find($request->user()->pelajaran_id)->kelas;
-        $kelasId = $request->kelas_id ?? $allKelas[0]->id;
+        if($allKelas->isEmpty()){
+            $kelasId = 0;
+        }else{
+            $kelasId = $request->kelas_id ?? $allKelas[0]->id;
+        }
         $siswa = Siswa::with(['nilaiUlangan' => fn(Builder $query) => $query->where('pelajaran_id', $request->user()->pelajaran_id)])->where('kelas_id', $kelasId)->orderBy('nama_siswa')->get()->map(function($siswa){
             $nilaiUlangan = $siswa->nilaiUlangan->groupBy('jenis_nilai')->map(fn($nilaiUlangan) => round($nilaiUlangan->avg('nilai'), 2));
             $siswa->nilaiTotal = $nilaiUlangan;
@@ -70,7 +74,7 @@ class NilaiUlanganController extends Controller
         $nilaiUlangan = NilaiUlangan::where('siswa_id', $siswa->id)->where('pelajaran_id', auth()->user()->pelajaran_id)->get()->groupBy('jenis_nilai');
         return response()->json($nilaiUlangan);
     }
-    
+
     public function daftarNilai()
     {
         $siswaId = auth('siswa')->user()->id;

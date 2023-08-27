@@ -27,7 +27,7 @@ class RedirectIfAuthenticated
                         return redirect()->route('guruDashboard');
                     }
                 }
-                return redirect(RouteServiceProvider::HOME);
+                return redirect()->back();
             }
         }
 

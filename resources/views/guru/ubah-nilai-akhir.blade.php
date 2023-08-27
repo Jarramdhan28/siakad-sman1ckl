@@ -1,6 +1,7 @@
 <x-admin-layout>
   <div class="pb-6 pt-1">
-      <span class="font-bold text-4xl">Ubah Data Nilai Akhir</span>
+        <p class="font-bold md:text-5xl text-2xl">Halaman Ubah Data Nilai Akhir</span></p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Silahkan Ubah Nilai Akhir jika ada yang salah</p>
   </div>
 
   <div class="w-full max-w-xll p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
@@ -44,7 +45,7 @@
 
               <div>
                   <x-input-label for="nilai_pengetahuan" :value="__('Nilai pengetahuan')" />
-                  <x-text-input id="nilai_pengetahuan" class="block mt-1 w-full" type="number" x-bind:value="dataNilai.pengetahuan ? dataNilai.pengetahuan[0].nilai : '0'" name="nilai_pengetahuan" />
+                  <x-text-input id="nilai_pengetahuan" class="block mt-1 w-full" type="number" x-bind:value="dataNilai.pengetahuan ? dataNilai.pengetahuan[0].nilai : '0'" name="nilai_pengetahuan" disabled />
               </div>
 
               <div class="mt-4">
@@ -67,11 +68,11 @@
           </div>
 
           <div class="flex items-center justify-end mt-4">
-              <x-primary-button href="{{ route('nilai-akhir.index') }}">Kembali</x-primary-button>
+             <x-secondary-button href="{{ route('nilai-akhir.index') }}">Kembali</x-primary-button>
 
-              <x-primary-button class="ml-4">
-                  {{ __('Ubah Data Nilai') }}
-              </x-primary-button>
+                <x-blue-button class="ml-4">
+                    {{ __('Simpan') }}
+                </x-blue-button>
           </div>
       </form>
   </div>

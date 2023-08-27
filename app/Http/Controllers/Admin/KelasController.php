@@ -41,7 +41,7 @@ class KelasController extends Controller
     public function update(KelasRequest $request, Kelas $kelas)
     {
         $kelas->update($request->only('nama_kelas'));
-        return redirect()->route('kelas.index')->with('success', 'Kelas Berhasil Diupdate');
+        return redirect()->route('kelas.index')->with('success', 'Kelas Berhasil Diubah');
     }
 
     public function show(Kelas $kelas)

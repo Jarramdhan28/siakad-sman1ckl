@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NilaiUlanganRequest;
 use App\Models\NilaiAkhir;
+use App\Models\NilaiUlangan;
 use App\Models\Pelajaran;
 use App\Models\Siswa;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -17,11 +18,17 @@ class NilaiAkhirController extends Controller
     public function index(Request $request)
     {
         $allKelas = Pelajaran::find($request->user()->pelajaran_id)->kelas;
-        $kelasId = $request->kelas_id ?? $allKelas[0]->id;
+        if ($allKelas->isEmpty()) {
+            $kelasId = 0;
+        } else {
+            $kelasId = $request->kelas_id ?? $allKelas[0]->id;
+        }
         $siswa = Siswa::with(['nilaiAkhir' => fn (Builder $query) => $query->where('pelajaran_id', $request->user()->pelajaran_id)])
+                ->with(['nilaiUlangan' => fn (Builder $query) => $query->where('pelajaran_id', $request->user()->pelajaran_id)])
                 ->where('kelas_id', $kelasId)->orderBy('nama_siswa')->get()
                 ->map(function($siswa){
                     $siswa->nilaiAkhir->each(fn($nilai) => $siswa['nilai_' . $nilai['tipe']] = round($nilai['nilai'], 2));
+                    $siswa['nilai_pengetahuan'] = round($siswa->nilaiUlangan->avg('nilai'), 2);
                     return $siswa;
                 });
         return view('guru.nilai-akhir', compact('allKelas', 'kelasId', 'siswa'));
@@ -53,6 +60,8 @@ class NilaiAkhirController extends Controller
     {
         $kelas = $siswa->kelas;
         $nilaiAkhir = NilaiAkhir::where('siswa_id', $siswa->id)->where('pelajaran_id', auth()->user()->pelajaran_id)->get()->groupBy('tipe');
+        $nilaiPengetahuan = round(NilaiUlangan::where('siswa_id', $siswa->id)->where('pelajaran_id', auth()->user()->pelajaran_id)->get()->avg('nilai'), 2);
+        $nilaiAkhir['pengetahuan'][0]['nilai'] = $nilaiPengetahuan;
         return view('guru.ubah-nilai-akhir', compact('siswa', 'kelas', 'nilaiAkhir'));
     }
 

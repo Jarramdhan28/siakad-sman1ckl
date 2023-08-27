@@ -1,6 +1,7 @@
 <x-admin-layout>
     <div class="pb-6 pt-1">
-        <span class="font-bold text-4xl">Ubah Data Pelajaran</span>
+        <p class="font-bold md:text-5xl text-2xl">Halaman Ubah Data Pelajaran</p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Silahkan Ubah Data Pelajaran Jika Salah Menajdi Dengan Benar</p>
     </div>
 
     <div class="w-full max-w-xll p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
@@ -15,12 +16,11 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <x-primary-button href="{{ route('pelajaran.index')}}">Kembali</x-primary-butt>
+                <x-secondary-button href="{{ route('pelajaran.index') }}">Kembali</x-primary-button>
 
-                <x-primary-button class="ml-4">
-                    {{ __('Ubah Data Pelajaran') }}
-                </x-primary-button>
-
+                <x-blue-button class="ml-4">
+                    {{ __('Simpan') }}
+                </x-blue-button>
             </div>
         </form>
     </div>

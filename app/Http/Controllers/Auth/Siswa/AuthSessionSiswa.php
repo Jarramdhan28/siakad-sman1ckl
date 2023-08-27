@@ -25,9 +25,18 @@ class AuthSessionSiswa extends Controller
         if(Auth::guard('siswa')->attempt($request->only('nis', 'password'))){
             $request->session()->regenerate();
             return redirect()->route('siswaDashboard');
-        } else {
+        } else if (Auth::attempt([
+            'nip' => $request->nis,
+            'password' => $request->password
+        ])){
+            if ($request->user()->role === '1') {
+                return redirect()->route('adminDashboard');
+            } else if ($request->user()->role === '0') {
+                return redirect()->route('guruDashboard');
+            }
+        }else{
             throw ValidationException::withMessages([
-                'nis' => 'Data yang anda masukan tidak valid',
+                'password' => 'NIS / NIP / NUPTK  dan Password yang dimasukan tidak sesuai',
             ]);
         }
     }

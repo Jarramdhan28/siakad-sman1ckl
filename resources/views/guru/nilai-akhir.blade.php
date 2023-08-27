@@ -1,7 +1,7 @@
 <x-admin-layout>
   <div class="pb-6 pt-1">
-      <p class="font-bold md:text-5xl text-2xl">Halaman Data Nilai Akhir</span></p>
-        <p class="text-gray-500 py-1 text-xs md:text-lg">Silahkan Masukan Nilai yang Sesuai</p>
+    <p class="font-bold md:text-5xl text-2xl">Halaman Data Nilai Akhir</span></p>
+    <p class="text-gray-500 py-1 text-xs md:text-lg">Silahkan Masukan Nilai yang Sesuai</p>
   </div>
 
   <div class="bg-white shadow-xl rounded-xl py-4 px-7 border border-gray-100">
@@ -21,8 +21,8 @@
               </button>
           </div>
       @endif
-      <div class="pb-4 flex justify-between items-center">
-          <x-blue-button href="{{ route('nilai-akhir.create') }}">Tambah Data Akhir</x-blue-button>
+      {{-- <div class="pb-4 flex justify-between items-center">
+          <x-blue-button href="{{ route('nilai-akhir.create') }}">Tambah Data Nilai Akhir</x-blue-button>
           <div class="w-full md:w-1/3 mb-4">
             <x-input-label for="kelas_id" :value="__('Kelas')" />
             <x-select name="kelas_id" id="kelas_id" class="block mt-1 w-full" x-data="{href : '{{ route('nilai-akhir.index') }}'}" @change="window.location.href = href + '?kelas_id=' + $el.value">
@@ -31,7 +31,7 @@
                 @endforeach
             </x-select>
           </div>
-      </div>
+      </div> --}}
       <div>
           <table id="datatable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
               <thead class="bg-gray-100">
@@ -50,8 +50,8 @@
                           <td class="text-center">{{ $loop->iteration }}</td>
                           <td class="text-center">{{ $data->nis }}</td>
                           <td class="text-center">{{ $data->nama_siswa }}</td>
-                          <td class="text-center">{{ $data->nilai_keterampilan ?? 0 }}</td>
                           <td class="text-center">{{ $data->nilai_pengetahuan ?? 0 }}</td>
+                          <td class="text-center">{{ $data->nilai_keterampilan ?? 0 }}</td>
                           <td class="text-center">
                               <x-success-button href="{{ route('nilai-akhir.edit', $data->id) }}">Ubah</x-success-button>
                           </td>

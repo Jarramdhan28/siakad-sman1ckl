@@ -57,24 +57,6 @@
                                 <span></span>
                             </button>
                         </div>
-                        <div class="z-50 hidden my-4 text-base list-none> bg-white divide-y divide-gray-100 rounded shadow"
-                            id="dropdown-user">
-                            <ul class="py-1" role="none">
-                                <li>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-10"
-                                        role="menuitem">Profile</a>
-                                </li>
-                            </ul>
-                            <div
-                                class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow id="dropdown-user">
-                                <ul class="py-1" role="none">
-                                    <li>
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-10"
-                                            role="menuitem">Profile</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -175,15 +157,6 @@
 
                     @if ($role === '0')
                     <li>
-                        <a href="{{ route('informasiGuru')}}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
-                            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="none" viewBox="0 0 18 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M12 2h4a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4m6 0v3H6V2m6 0a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1M5 5h8m-5 5h5m-8 0h.01M5 14h.01M8 14h5"/>
-                            </svg>
-                            <span class="flex-1 ml-3 whitespace-nowrap">Informasi Terbaru</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ route('absensi.index') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
                         <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
@@ -205,7 +178,7 @@
                     </svg>'
                         text="Nilai">
                         <li class="py-2"><a href="{{ route('nilai-ulangan.index') }}"
-                                class="hover:text-gray-900">Nilai Ulangan</a></li>
+                                class="hover:text-gray-900">Nilai Ujian</a></li>
                         <li class="py-2"><a href="{{ route('nilai-akhir.index') }}"
                                 class="hover:text-gray-900">Nilai Akhir</a></li>
                     </x-dropdown-menu>
@@ -258,6 +231,17 @@
                 })
                 .columns.adjust()
                 .responsive.recalc();
+        });
+
+        const inputElement = document.getElementById('text-input');
+
+        inputElement.addEventListener('input', function(event) {
+            const value = event.target.value;
+            const filteredValue = value.replace(/[0-9]/g, ''); // Menghapus angka
+
+            if (filteredValue !== value) {
+                event.target.value = filteredValue;
+            }
         });
     </script>
 </body>

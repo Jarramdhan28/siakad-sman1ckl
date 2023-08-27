@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-siswa-layout>
     <div class="pb-6 pt-1">
         <p class="font-bold md:text-5xl text-2xl">Halaman Ubah Profile</p>
         <p class="text-gray-500 py-1 text-xs md:text-lg">Silahkan Ubah Data yang Salah Menjadi Benar</p>
@@ -21,26 +21,25 @@
             <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
                 <div class="w-full max-w-xll p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
                     <span class="text-2xl font-semibold">Ubah Data Diri Anda</span>
-                    <form method="POST" action="{{ route('profile.update', Auth::user()->id) }}">
+                    <form method="POST" action="{{ route('profileSiswa.update', auth('siswa')->user()->id) }}">
                         @csrf
                         @method('put')
                         <div class="mt-4">
-                            <x-input-label for="nip" :value="__('NIP/NUPTK')" />
-                            <x-text-input id="nip" class="block mt-1 w-full disabled:bg-gray-100" type="number" value="{{ Auth::user()->nip }}" required autofocus autocomplete="nip" disabled/>
-                            <input type="hidden" name="nip" value="{{ Auth::user()->nip }}">
-                            <x-input-error :messages="$errors->get('nip')" class="mt-2" />
+                            <x-input-label for="nis" :value="__('NIS')" />
+                            <x-text-input id="nis" class="block mt-1 w-full disabled:bg-gray-100" type="number" value="{{ auth('siswa')->user()->nis }}" autofocus autocomplete="nis" disabled/>
+                            <input type="hidden" name="nis" value="{{ auth('siswa')->user()->nis }}">
+                            <x-input-error :messages="$errors->get('nis')" class="mt-2" />
                         </div>
 
-                        {{-- Nama Guru --}}
                         <div class="mt-4">
-                            <x-input-label for="nama_guru" :value="__('Nama Guru')" />
-                            <x-text-input id="text-input" class="block mt-1 w-full" type="text" name="nama_guru" value="{{ Auth::user()->nama_guru }}" required autofocus autocomplete="nama_guru" />
-                            <x-input-error :messages="$errors->get('nama_guru')" class="mt-2" />
+                            <x-input-label for="nama_siswa" :value="__('Nama Guru')" />
+                            <x-text-input id="text-input" class="block mt-1 w-full" type="text" name="nama_siswa" value="{{ auth('siswa')->user()->nama_siswa }}" required autofocus autocomplete="nama_siswa" />
+                            <x-input-error :messages="$errors->get('nama_siswa')" class="mt-2" />
                         </div>
 
                         <div class="mt-4">
                             <x-input-label for="tanggal_lahir" :value="__('Tanggal Lahir')" />
-                            <x-text-input id="tanggal_lahir" class="block mt-1 w-full" type="date" name="tanggal_lahir" value="{{ date('Y-m-d', strtotime(Auth::user()->tanggal_lahir)) }}" required autofocus autocomplete="tanggal_lahir" />
+                            <x-text-input id="tanggal_lahir" class="block mt-1 w-full" type="date" name="tanggal_lahir" value="{{ date('Y-m-d', strtotime(auth('siswa')->user()->tanggal_lahir)) }}" required autofocus autocomplete="tanggal_lahir" />
                             <x-input-error :messages="$errors->get('tanggal_lahir')" class="mt-2" />
                         </div>
 
@@ -48,33 +47,32 @@
                             <x-input-label for="jenis_kelamin" :value="__('Jenis Kelamin')" />
                             <x-select name="jenis_kelamin" id="jenis_kelamin" class="block mt-1 w-full">
                                 <option value="" selected disabled>-- Jenis Kelamin --</option>
-                                <option value="Laki-laki" {{ Auth::user()->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                                <option value="Perempuan" {{ Auth::user()->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                <option value="Laki-laki" {{ auth('siswa')->user()->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                <option value="Perempuan" {{ auth('siswa')->user()->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                             </x-select>
                             <x-input-error :messages="$errors->get('jenis_kelamin')" class="mt-2" />
                         </div>
 
                         <div class="mt-4">
                             <x-input-label for="alamat" :value="__('Alamat')" />
-                            <x-text-input id="alamat" class="block mt-1 w-full" type="text" name="alamat" value="{{ Auth::user()->alamat }}" required autofocus autocomplete="alamat" />
+                            <x-text-input id="alamat" class="block mt-1 w-full" type="text" name="alamat" value="{{ auth('siswa')->user()->alamat }}" required autofocus autocomplete="alamat" />
                             <x-input-error :messages="$errors->get('alamat')" class="mt-2" />
                         </div>
 
                         <div class="mt-4">
                             <x-input-label for="no_hp" :value="__('No HP')" />
-                            <x-text-input id="no_hp" class="block mt-1 w-full" type="text" name="no_hp" value="{{ Auth::user()->no_hp }}" required autofocus autocomplete="no_hp" />
+                            <x-text-input id="no_hp" class="block mt-1 w-full" type="text" name="no_hp" value="{{ auth('siswa')->user()->no_hp }}" required autofocus autocomplete="no_hp" />
                             <x-input-error :messages="$errors->get('no_hp')" class="mt-2" />
                         </div>
 
                         <div class="mt-4">
-                            <x-text-input type="hidden" name="role" value="{{ Auth::user()->role }}" required />
-                            <x-text-input type="hidden" name="pelajaran_id" value="{{ Auth::user()->pelajaran_id }}" required />
+                            <x-text-input type="hidden" name="kelas_id" value="{{ auth('siswa')->user()->kelas_id }}" required />
                         </div>
 
                         <!-- Email Address -->
                         <div class="mt-4">
                             <x-input-label for="email" :value="__('Email')" />
-                            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ Auth::user()->email }}" required autocomplete="username" />
+                            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ auth('siswa')->user()->email }}" required autocomplete="email" />
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
 
@@ -89,7 +87,7 @@
                 {{-- Form Ubah Password --}}
                 <div class="w-full max-w-xll p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 h-max">
                     <span class="text-2xl font-semibold">Ubah Password</span>
-                    <form method="POST" action="{{ route('profile.pass', Auth::user()->id) }}">
+                    <form method="POST" action="{{ route('profileSiswa.pass', auth('siswa')->user()->id) }}">
                         @csrf
                         @method('put')
                         <div class="mt-4">
@@ -122,4 +120,4 @@
             </div>
         </div>
 
-</x-admin-layout>
+</x-siswa-layout>

@@ -21,7 +21,7 @@
               </button>
           </div>
       @endif
-      <div class="pb-4 flex justify-between items-center">
+      {{-- <div class="pb-4 flex justify-between items-center">
           <x-blue-button href="{{ route('nilai-ulangan.create') }}">Tambah Data Nilai Ujian</x-blue-button>
           <div class="w-full md:w-1/3 mb-4">
             <x-input-label for="kelas_id" :value="__('Kelas')" />
@@ -31,7 +31,7 @@
                 @endforeach
             </x-select>
           </div>
-      </div>
+      </div> --}}
       <div>
           <table id="datatable" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
               <thead class="bg-gray-100">

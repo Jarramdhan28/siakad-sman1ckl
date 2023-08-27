@@ -1,6 +1,7 @@
 <x-admin-layout>
     <div class="pb-6 pt-1">
-        <span class="font-bold text-4xl">Tambah Data Siswa</span>
+        <p class="font-bold md:text-5xl text-2xl">Halaman Tambah Data Siswa</p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Silahkan Masukan Data Siswa Dengan Benar</p>
     </div>
 
     <div class="w-full max-w-xll p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
@@ -8,14 +9,14 @@
             @csrf
             <div>
                 <x-input-label for="nis" :value="__('NIS')" />
-                <x-text-input id="nis" class="block mt-1 w-full" type="text" name="nis" :value="old('nis')" required autofocus autocomplete="nis" />
+                <x-text-input id="nis" class="block mt-1 w-full" type="number" name="nis" :value="old('nis')" required autofocus autocomplete="nis" />
                 <x-input-error :messages="$errors->get('nis')" class="mt-2" />
             </div>
 
             {{-- Nama Guru --}}
             <div class="mt-4">
                 <x-input-label for="nama_siswa" :value="__('Nama Siswa')" />
-                <x-text-input id="nama_siswa" class="block mt-1 w-full" type="text" name="nama_siswa" :value="old('nama_siswa')" required autofocus autocomplete="nama_siswa" />
+                <x-text-input id="text-input" class="block mt-1 w-full" type="text" name="nama_siswa" :value="old('nama_siswa')" required autofocus autocomplete="nama_siswa" />
                 <x-input-error :messages="$errors->get('nama_siswa')" class="mt-2" />
             </div>
 
@@ -89,11 +90,11 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <x-primary-button href="{{ route('siswa.index')}}">Kembali</x-primary-button>
+                <x-secondary-button href="{{ route('siswa.index') }}">Kembali</x-primary-button>
 
-                <x-primary-button class="ml-4">
-                    {{ __('Tambah Data Siswa') }}
-                </x-primary-button>
+                <x-blue-button class="ml-4">
+                    {{ __('Simpan') }}
+                </x-blue-button>
             </div>
         </form>
     </div>

@@ -40,6 +40,6 @@ class PelajaranController extends Controller
     public function update(PelajaranRequest $request, Pelajaran $pelajaran)
     {
         $pelajaran->update($request->only('nama_pelajaran'));
-        return redirect()->route('pelajaran.index')->with('success', 'Pelajaran Berhasil Diupdate successfully.');
+        return redirect()->route('pelajaran.index')->with('success', 'Pelajaran Berhasil Diubah.');
     }
 }

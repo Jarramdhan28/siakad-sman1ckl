@@ -9,7 +9,7 @@
             @csrf
             <div>
                 <x-input-label for="nip" :value="__('NIP/NUPTK')" />
-                <x-text-input id="nip" class="block mt-1 w-full" type="text" name="nip" :value="old('nip')"
+                <x-text-input id="nip" class="block mt-1 w-full" type="number" name="nip" :value="old('nip')"
                     required autofocus autocomplete="nip" />
                 <x-input-error :messages="$errors->get('nip')" class="mt-2" />
             </div>
@@ -17,8 +17,8 @@
             {{-- Nama Guru --}}
             <div class="mt-4">
                 <x-input-label for="nama_guru" :value="__('Nama Guru')" />
-                <x-text-input id="nama_guru" class="block mt-1 w-full" type="text" name="nama_guru" :value="old('nama_guru')"
-                    required autofocus autocomplete="nama_guru" />
+                <x-text-input id="text-input" class="block mt-1 w-full" type="text" inputmode="text" pattern="[A-Za-z]+" name="nama_guru" :value="old('nama_guru')"
+                    required autofocus autocomplete="nama_guru" title="Nama hanya boleh mengandung huruf."/>
                 <x-input-error :messages="$errors->get('nama_guru')" class="mt-2" />
             </div>
 
@@ -107,5 +107,4 @@
             </div>
         </form>
     </div>
-
 </x-admin-layout>

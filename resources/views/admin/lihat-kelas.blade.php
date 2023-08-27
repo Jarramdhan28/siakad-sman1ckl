@@ -1,6 +1,7 @@
 <x-admin-layout>
     <div class="pb-6 pt-1">
-        <span class="font-bold text-4xl">Halaman Data Siswa Kelas {{$kelas->nama_kelas}}</span>
+        <p class="font-bold md:text-5xl text-2xl">Halaman Data Siswa Kelas {{$kelas->nama_kelas}}</p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Ini merupakan Data Kelas {{$kelas->nama_kelas}} </p>
     </div>
 
     <div class="bg-white shadow-xl rounded-xl py-4 px-7 border border-gray-100">

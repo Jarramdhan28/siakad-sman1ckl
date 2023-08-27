@@ -47,12 +47,6 @@ class InformasiController extends Controller
         return view('admin.lihat-informasi', compact('informasi'));
     }
 
-    public function showInfo()
-    {
-        $informasi = Informasi::all();
-        return view('guru.informasi', compact('informasi'));
-    }
-
     public function showDetail(Informasi $informasi)
     {
         return view('guru.lihat-informasi', compact('informasi'));

@@ -144,11 +144,11 @@
           </div>
 
           <div class="flex items-center justify-end mt-4">
-              <x-primary-button href="{{ route('nilai-ulangan.index') }}">Kembali</x-primary-button>
+            <x-secondary-button href="{{ route('nilai-ulangan.index') }}">Kembali</x-primary-button>
 
-              <x-primary-button class="ml-4">
-                  {{ __('Ubah Data Nilai') }}
-              </x-primary-button>
+            <x-blue-button class="ml-4">
+                {{ __('Simpan') }}
+            </x-blue-button>
           </div>
       </form>
   </div>

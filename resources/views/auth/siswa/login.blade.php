@@ -7,8 +7,8 @@
 
         <!-- NIS -->
         <div>
-            <x-input-label for="nis" :value="__('NIS')" />
-            <x-text-input id="nis" class="block mt-1 w-full" type="text" name="nis" value="{{ old('nis') }}" autofocus required />
+            <x-input-label for="nis" :value="__('NIS / NIP / NUPTK')" />
+            <x-text-input id="nis" class="block mt-1 w-full" type="number" name="nis" value="{{ old('nis') }}" autofocus required />
             <x-input-error :messages="$errors->get('nis')" class="mt-2" />
         </div>
 
