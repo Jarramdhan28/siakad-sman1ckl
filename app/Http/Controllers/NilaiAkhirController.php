@@ -71,4 +71,22 @@ class NilaiAkhirController extends Controller
         $nilaiAkhir = NilaiAkhir::where('siswa_id', $siswa->id)->where('pelajaran_id', auth()->user()->pelajaran_id)->get()->groupBy('tipe');
         return response()->json($nilaiAkhir);
     }
+
+    public function daftarNilai()
+    {
+        $siswaId = auth('siswa')->user()->id;
+        $kelasId = auth('siswa')->user()->kelas_id;
+        $nilaiAkhir = Pelajaran::with(['nilaiAkhir' => fn(Builder $query) => $query->where('siswa_id', $siswaId)])
+        ->whereHas('kelas', fn(Builder $query) => $query->where('kelas_id', $kelasId))
+        ->get()->map(function($nilai){
+            $nilai->nilaiAkhir->each(function($nilaiAkhir) use ($nilai) {
+                $nilai[$nilaiAkhir['tipe']] = [
+                    'nilai' => $nilaiAkhir['nilai'],
+                    'keterangan' => $nilaiAkhir['keterangan'],
+                ];
+            });
+            return $nilai;
+        });
+        return view('siswa.daftar-nilai-akhir', compact('nilaiAkhir'));
+    }
 }

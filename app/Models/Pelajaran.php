@@ -20,4 +20,19 @@ class Pelajaran extends Model
     {
         return $this->belongsToMany(Kelas::class, 'belajar');
     }
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class);
+    }
+
+    public function nilaiUlangan()
+    {
+        return $this->hasMany(NilaiUlangan::class);
+    }
+
+    public function nilaiAkhir()
+    {
+        return $this->hasMany(NilaiAkhir::class);
+    }
 }

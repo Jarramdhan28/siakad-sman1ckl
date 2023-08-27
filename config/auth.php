@@ -17,6 +17,11 @@ return [
         'passwords' => 'users',
     ],
 
+    'siswa' => [
+        'driver' => 'eloquent',
+        'model' => \App\Models\Siswa::class,
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -44,6 +49,11 @@ return [
             'driver' => 'session',
             'provider' => 'gurus',
         ],
+
+        'siswa' => [
+            'driver' => 'session',
+            'provider' => 'siswas',
+        ]
     ],
 
     /*
@@ -72,7 +82,12 @@ return [
         'gurus' => [
             'driver' => 'eloquent',
             'model' => App\Models\Guru::class,
-        ]
+        ],
+
+        'siswas' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\Siswa::class
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -106,6 +121,10 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'siswas' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\Siswa::class
+        ]
     ],
 
     /*

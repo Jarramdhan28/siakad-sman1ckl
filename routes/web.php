@@ -10,7 +10,6 @@ use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\PelajaranController;
 use App\Http\Controllers\NilaiAkhirController;
 use App\Http\Controllers\NilaiUlanganController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProfileGuruController;
 use Illuminate\Support\Facades\Route;
 
@@ -75,6 +74,34 @@ Route::middleware('auth')->group(function(){
             Route::delete('/belajar/{kelas}', 'destroy')->name('belajar.destroy');
         });
     });
+Route::middleware('admin')->group(function () {
+    // Admin Controller
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('adminDashboard');
+
+    // Admin Controller Guru
+    Route::resource('guru', GuruController::class)->except('show');
+
+    // Admin Controller Siswa
+    Route::resource('siswa', SiswaController::class)->except('show');
+
+    // Admin Controller Kelas
+    Route::resource('kelas', KelasController::class)->parameters([
+        'kelas' => 'kelas'
+    ])->except('show');
+
+    // Admin Controller Pelajaran
+    Route::resource('pelajaran', PelajaranController::class)->except('show');
+
+    // Controller Belajar
+    Route::controller(BelajarController::class)->group(function () {
+        Route::get('/belajar', 'index')->name('belajar.index');
+        Route::get('/belajar/create', 'create')->name('belajar.create');
+        Route::post('/belajar', 'store')->name('belajar.store');
+        Route::get('/belajar/{kelas}/edit', 'edit')->name('belajar.edit');
+        Route::put('/belajar/{kelas}', 'update')->name('belajar.update');
+        Route::delete('/belajar/{kelas}', 'destroy')->name('belajar.destroy');
+    });
+});
 
     Route::middleware('can:guru')->group(function(){
         Route::get('/guru/dashboard', [DashboardController::class, 'guru'])->name('guruDashboard');
@@ -115,11 +142,18 @@ Route::middleware('auth')->group(function(){
         });
     });
 
-    Route::get('/getSiswaByKelas/{kelas}',[SiswaController::class, 'getByKelas'])->name('siswa.getByKelas');
+    Route::get('/getSiswaByKelas/{kelas}', [SiswaController::class, 'getByKelas'])->name('siswa.getByKelas');
     Route::get('/getNilaiUlanganBySiswa/{siswa}', [NilaiUlanganController::class, 'getBySiswa'])->name('nilai-ulangan.getBySiswa');
     Route::get('/getNilaiAkhirBySiswa/{siswa}', [NilaiAkhirController::class, 'getBySiswa'])->name('nilai-akhir.getBySiswa');
 });
 
 Route::get('/siswa/informasi', [InformasiSiswaController::class, 'index'])->name('siswaInformasi');
 
-require __DIR__.'/auth.php';
+Route::middleware('siswa')->group(function(){
+    Route::get('/siswa/dashboard', [DashboardController::class, 'siswa'])->name('siswaDashboard');
+    Route::get('/daftar-absensi', [AbsensiController::class, 'daftarAbsensi'])->name('absensi.daftar-absensi');
+    Route::get('/daftar-nilai-ulangan', [NilaiUlanganController::class, 'daftarNilai'])->name('nilai-ulangan.daftar-nilai');
+    Route::get('/daftar-nilai-akhir', [NilaiAkhirController::class, 'daftarNilai'])->name('nilai-akhir.daftar-nilai');
+});
+
+require __DIR__ . '/auth.php';
