@@ -61,13 +61,15 @@ class NilaiAkhirController extends Controller
         $kelas = $siswa->kelas;
         $nilaiAkhir = NilaiAkhir::where('siswa_id', $siswa->id)->where('pelajaran_id', auth()->user()->pelajaran_id)->get()->groupBy('tipe');
         $nilaiPengetahuan = round(NilaiUlangan::where('siswa_id', $siswa->id)->where('pelajaran_id', auth()->user()->pelajaran_id)->get()->avg('nilai'), 2);
-        $nilaiAkhir['pengetahuan'][0]['nilai'] = $nilaiPengetahuan;
+        // $nilaiAkhir['pengetahuan'][0]['nilai'] = $nilaiPengetahuan;
+        if (isset($nilaiAkhir['pengetahuan'])) {
+            $nilaiAkhir['pengetahuan'][0]['nilai'] = $nilaiPengetahuan;
+        } else {
+            $nilaiAkhir['pengetahuan'] = [['nilai' => $nilaiPengetahuan]];
+        }
         return view('guru.ubah-nilai-akhir', compact('siswa', 'kelas', 'nilaiAkhir'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Siswa $siswa)
     {
         $nilaiAkhirModel = new NilaiAkhir();
@@ -81,6 +83,7 @@ class NilaiAkhirController extends Controller
         return response()->json($nilaiAkhir);
     }
 
+    // Menampilkan Daftar Nilai pada Siswa
     public function daftarNilai()
     {
         $siswaId = auth('siswa')->user()->id;

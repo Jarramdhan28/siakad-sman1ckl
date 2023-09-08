@@ -182,5 +182,109 @@ class GuruSeeder extends Seeder
             'role' => '0',
             'password' => Hash::make('1234'),
         ]);
+
+        Guru::create([
+            'nip' => '8643754655300022',
+            'nama_guru' => 'ERNA ADIYANTI, S.E.',
+            'tanggal_lahir' => '1971-10-21',
+            'jenis_kelamin' => 'Perempuan',
+            'alamat' => 'Cikatomas',
+            'email' => 'erna@gmail.com',
+            'no_hp' => '081897109463',
+            'pelajaran_id' => '3',
+            'role' => '0',
+            'password' => Hash::make('1234'),
+        ]);
+
+        Guru::create([
+            'nip' => '196508191988032003',
+            'nama_guru' => 'HENI RUKHAENIAH, S.Pd.',
+            'tanggal_lahir' => '1971-03-21',
+            'jenis_kelamin' => 'Perempuan',
+            'alamat' => 'Cipatujah',
+            'email' => 'heni@gmail.com',
+            'no_hp' => '081897109009',
+            'pelajaran_id' => '13',
+            'role' => '0',
+            'password' => Hash::make('1234'),
+        ]);
+
+        Guru::create([
+            'nip' => '9759771672130072',
+            'nama_guru' => 'JAMILAH, S.Pd.',
+            'tanggal_lahir' => '1971-07-11',
+            'jenis_kelamin' => 'Perempuan',
+            'alamat' => 'Cipatujah',
+            'email' => 'jamila@gmail.com',
+            'no_hp' => '08182199010',
+            'pelajaran_id' => '1',
+            'role' => '0',
+            'password' => Hash::make('1234'),
+        ]);
+
+        Guru::create([
+            'nip' => '196504021990011001',
+            'nama_guru' => 'KASNADINATA, S.Pd.',
+            'tanggal_lahir' => '1971-07-11',
+            'jenis_kelamin' => 'Laki-laki',
+            'alamat' => 'Cipatujah',
+            'email' => 'kasna@gmail.com',
+            'no_hp' => '08198711901',
+            'pelajaran_id' => '4',
+            'role' => '0',
+            'password' => Hash::make('1234'),
+        ]);
+
+        Guru::create([
+            'nip' => '0236770671230213',
+            'nama_guru' => 'LELITA LISTIAN RUKMANA, S.Pd.',
+            'tanggal_lahir' => '1971-07-11',
+            'jenis_kelamin' => 'Perempuan',
+            'alamat' => 'Tasikmalaya',
+            'email' => 'lelita@gmail.com',
+            'no_hp' => '08108711901',
+            'pelajaran_id' => '4',
+            'role' => '0',
+            'password' => Hash::make('1234'),
+        ]);
+
+        Guru::create([
+            'nip' => '1351765667210043',
+            'nama_guru' => 'LIGA SILVIANA, S.Pd.',
+            'tanggal_lahir' => '1987-01-11',
+            'jenis_kelamin' => 'Laki-laki',
+            'alamat' => 'Tasikmalaya',
+            'email' => 'liga@gmail.com',
+            'no_hp' => '08108871901',
+            'pelajaran_id' => '16',
+            'role' => '0',
+            'password' => Hash::make('1234'),
+        ]);
+
+        Guru::create([
+            'nip' => '196512101991031009',
+            'nama_guru' => 'Drs. LUKMAN, M.Pd.',
+            'tanggal_lahir' => '1971-08-13',
+            'jenis_kelamin' => 'Laki-laki',
+            'alamat' => 'Tasikmalaya',
+            'email' => 'lukman@gmail.com',
+            'no_hp' => '08108871999',
+            'pelajaran_id' => '2',
+            'role' => '0',
+            'password' => Hash::make('1234'),
+        ]);
+
+        Guru::create([
+            'nip' => '8036729632200003',
+            'nama_guru' => 'MAMAT EFENDI',
+            'tanggal_lahir' => '1971-08-13',
+            'jenis_kelamin' => 'Laki-laki',
+            'alamat' => 'Tasikmalaya',
+            'email' => 'mamat@gmail.com',
+            'no_hp' => '08504871999',
+            'pelajaran_id' => '9',
+            'role' => '0',
+            'password' => Hash::make('1234'),
+        ]);
     }
 }

@@ -20,7 +20,7 @@ class SiswaFactory extends Factory
         $gender = fake()->randomElement([Person::GENDER_MALE, Person::GENDER_FEMALE]);
         return [
             'nis' => fake()->unique()->randomNumber(9, true) . fake()->randomDigit(),
-            'nama_siswa' => fake()->name($gender),
+            'nama_siswa' => fake()->firstName($gender) . ' ' . fake()->lastName(),
             'tanggal_lahir' => fake()->date(),
             'jenis_kelamin' => $gender === 'male' ? 'Laki-laki' : 'Perempuan',
             'alamat' => fake()->address(),
