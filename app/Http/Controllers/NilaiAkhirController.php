@@ -89,11 +89,12 @@ class NilaiAkhirController extends Controller
         $siswaId = auth('siswa')->user()->id;
         $kelasId = auth('siswa')->user()->kelas_id;
         $nilaiAkhir = Pelajaran::with(['nilaiAkhir' => fn(Builder $query) => $query->where('siswa_id', $siswaId)])
+        ->with(['nilaiUlangan' => fn(Builder $query) => $query->where('siswa_id', $siswaId)])
         ->whereHas('kelas', fn(Builder $query) => $query->where('kelas_id', $kelasId))
         ->get()->map(function($nilai){
             $nilai->nilaiAkhir->each(function($nilaiAkhir) use ($nilai) {
                 $nilai[$nilaiAkhir['tipe']] = [
-                    'nilai' => $nilaiAkhir['nilai'],
+                    'nilai' => $nilaiAkhir['tipe'] === 'pengetahuan' ? round($nilai->nilaiUlangan->avg('nilai'), 2) : $nilaiAkhir['nilai'],
                     'keterangan' => $nilaiAkhir['keterangan'],
                 ];
             });
