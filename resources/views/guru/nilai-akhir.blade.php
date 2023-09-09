@@ -22,7 +22,7 @@
           </div>
       @endif
       <div class="pb-4 flex justify-between items-center">
-          <x-blue-button href="{{ route('nilai-akhir.create') }}">Tambah Data Nilai Akhir</x-blue-button>
+          {{-- <x-blue-button href="{{ route('nilai-akhir.create') }}">Tambah Data Nilai Akhir</x-blue-button> --}}
           <div class="w-full md:w-1/3 mb-4">
             <x-input-label for="kelas_id" :value="__('Kelas')" />
             <x-select name="kelas_id" id="kelas_id" class="block mt-1 w-full" x-data="{href : '{{ route('nilai-akhir.index') }}'}" @change="window.location.href = href + '?kelas_id=' + $el.value">

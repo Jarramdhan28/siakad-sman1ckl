@@ -17,7 +17,7 @@
 
             <div class="mt-4">
                 <x-input-label for="isi" :value="__('Isi Artikel')" />
-                <textarea name="isi" id="isi" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{$informasi->isi}}</textarea>
+                <textarea name="isi" id="isi" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" rows="20" >{{$informasi->isi}}</textarea>
                 <x-input-error :messages="$errors->get('isi')" class="mt-2" />
             </div>
 
