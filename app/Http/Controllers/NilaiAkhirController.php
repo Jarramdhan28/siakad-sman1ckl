@@ -94,10 +94,6 @@ class NilaiAkhirController extends Controller
         ->get()->map(function($nilai){
             $nilai->nilaiAkhir->each(function($nilaiAkhir) use ($nilai) {
                 $nilai[$nilaiAkhir['tipe']] = [
-<<<<<<< HEAD
-                    // 'nilai' => $nilaiAkhir['nilai'],
-=======
->>>>>>> 6b7f4675b58627b3ab74fd3080b8b890141fb58b
                     'nilai' => $nilaiAkhir['tipe'] === 'pengetahuan' ? round($nilai->nilaiUlangan->avg('nilai'), 2) : $nilaiAkhir['nilai'],
                     'keterangan' => $nilaiAkhir['keterangan'],
                 ];

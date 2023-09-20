@@ -4,6 +4,7 @@ use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\Admin\BelajarController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GuruController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\InformasiController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\KelasController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\NilaiAkhirController;
 use App\Http\Controllers\NilaiUlanganController;
 use App\Http\Controllers\ProfileGuruController;
 use App\Http\Controllers\ProfileSiswaController;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +52,9 @@ Route::middleware('admin')->group(function () {
 
     // Admin Controller Siswa
     Route::resource('siswa', SiswaController::class)->except('show');
+
+    // Admin Controller Admin
+    Route::resource('admin', AdminController::class)->except('show');
 
     // Admin Controller Kelas
     Route::resource('kelas', KelasController::class)->parameters([
@@ -121,7 +126,7 @@ Route::get('/siswa/informasi', [InformasiSiswaController::class, 'index'])->name
 Route::middleware('siswa')->group(function(){
 
     Route::controller(ProfileSiswaController::class)->group(function () {
-        Route::get('/profile-siswa', 'index')->name('profileSiswa.index');
+        Route::get('/profile-siswa', 'index')->name('5');
         Route::put('/profile-siswa/{siswa}', 'update')->name('profileSiswa.update');
         Route::put('/profile-siswa/{siswa}/pass', 'updatePass')->name('profileSiswa.pass');
     });

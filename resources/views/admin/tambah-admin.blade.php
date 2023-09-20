@@ -1,11 +1,11 @@
 <x-admin-layout>
     <div class="pb-6 pt-1">
-        <p class="font-bold md:text-5xl text-2xl">Halaman Tambah Data Guru</p>
-        <p class="text-gray-500 py-1 text-xs md:text-lg">Silahkan Masukan Data Guru dengan Benar</p>
+        <p class="font-bold md:text-5xl text-2xl">Halaman Tambah Data Admin</p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Silahkan Masukan Data Admin dengan Benar</p>
     </div>
 
     <div class="w-full max-w-xll p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
-        <form method="POST" action="{{ route('guru.store') }}">
+        <form method="POST" action="{{ route('admin.store') }}">
             @csrf
             <div>
                 <x-input-label for="nip" :value="__('NIP/NUPTK')" />
@@ -16,7 +16,7 @@
 
             {{-- Nama Guru --}}
             <div class="mt-4">
-                <x-input-label for="nama_guru" :value="__('Nama Guru')" />
+                <x-input-label for="nama_guru" :value="__('Nama Admin')" />
                 <x-text-input id="text-input" class="block mt-1 w-full" type="text" inputmode="text" name="nama_guru" :value="old('nama_guru')"
                     required autofocus autocomplete="nama_guru" title="Nama hanya boleh mengandung huruf."/>
                 <x-input-error :messages="$errors->get('nama_guru')" class="mt-2" />
@@ -56,18 +56,11 @@
 
             {{-- Pelajaran --}}
             <div class="mt-4">
-                <x-input-label for="pelajaran_id" :value="__('Mata Pelajaran')" />
-                <x-select name="pelajaran_id" id="pelajaran_id" class="block mt-1 w-full">
-                    <option value="" selected disabled hidden>-- Mata Pelajaran --</option>
-                    @foreach ($pelajaran as $data)
-                        <option value="{{ $data->id }}">{{ $data->nama_pelajaran }}</option>
-                    @endforeach
-                </x-select>
-                <x-input-error :messages="$errors->get('pelajaran_id')" class="mt-2" />
+                <input type="hidden" name="pelajaran_id" value="0">
             </div>
 
             <div class="mt-4">
-                <x-text-input type="hidden" name="role" :value="old('role')" required value="0" />
+                <x-text-input type="hidden" name="role" :value="old('role')" required value="1" />
             </div>
 
             <!-- Email Address -->

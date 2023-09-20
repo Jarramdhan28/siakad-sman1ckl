@@ -1,0 +1,76 @@
+<x-admin-layout>
+    <div class="pb-6 pt-1">
+        <p class="font-bold md:text-5xl text-2xl">Halaman Ubah Data Admin</p>
+        <p class="text-gray-500 py-1 text-xs md:text-lg">Silahkan Ubah Data Admin yang Salah Menjadi Benar</p>
+    </div>
+
+    <div class="w-full max-w-xll p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
+        <form method="POST" action="{{ route('admin.update', $admin->id) }}">
+            @csrf
+            @method('put')
+            <div class="mt-4">
+                <x-input-label for="nip" :value="__('NIP/NUPTK')" />
+                <x-text-input id="nip" class="block mt-1 w-full" type="number" name="nip" value="{{ $admin->nip }}" required autofocus autocomplete="nip" />
+                <x-input-error :messages="$errors->get('nip')" class="mt-2" />
+            </div>
+
+            {{-- Nama Guru --}}
+            <div class="mt-4">
+                <x-input-label for="nama_guru" :value="__('Nama Guru')" />
+                <x-text-input id="text-input" class="block mt-1 w-full" type="text" name="nama_guru" value="{{ $admin->nama_guru }}" required autofocus autocomplete="nama_guru" />
+                <x-input-error :messages="$errors->get('nama_guru')" class="mt-2" />
+            </div>
+
+            <div class="mt-4">
+                <x-input-label for="tanggal_lahir" :value="__('Tanggal Lahir')" />
+                <x-text-input id="tanggal_lahir" class="block mt-1 w-full" type="date" name="tanggal_lahir" value="{{ date('Y-m-d', strtotime($admin->tanggal_lahir)) }}" required autofocus autocomplete="tanggal_lahir" />
+                <x-input-error :messages="$errors->get('tanggal_lahir')" class="mt-2" />
+            </div>
+
+            <div class="mt-4">
+                <x-input-label for="jenis_kelamin" :value="__('Jenis Kelamin')" />
+                <x-select name="jenis_kelamin" id="jenis_kelamin" class="block mt-1 w-full">
+                    <option value="" selected disabled>-- Jenis Kelamin --</option>
+                    <option value="Laki-laki" {{ $admin->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                    <option value="Perempuan" {{ $admin->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                </x-select>
+                <x-input-error :messages="$errors->get('jenis_kelamin')" class="mt-2" />
+            </div>
+
+            {{-- Alamat --}}
+            <div class="mt-4">
+                <x-input-label for="alamat" :value="__('Alamat')" />
+                <x-text-input id="alamat" class="block mt-1 w-full" type="text" name="alamat" value="{{ $admin->alamat }}" required autofocus autocomplete="alamat" />
+                <x-input-error :messages="$errors->get('alamat')" class="mt-2" />
+            </div>
+
+            {{-- No HP --}}
+            <div class="mt-4">
+                <x-input-label for="no_hp" :value="__('No HP')" />
+                <x-text-input id="no_hp" class="block mt-1 w-full" type="number" name="no_hp" value="{{ $admin->no_hp }}" required autofocus autocomplete="no_hp" />
+                <x-input-error :messages="$errors->get('no_hp')" class="mt-2" />
+            </div>
+
+            <div class="mt-4">
+                <x-text-input type="hidden" name="role" value="{{ $admin->role }}" required />
+                <x-text-input type="hidden" name="role" value="{{ $admin->pelajaran_id }}" required />
+            </div>
+
+            <!-- Email Address -->
+            <div class="mt-4">
+                <x-input-label for="email" :value="__('Email')" />
+                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ $admin->email }}" required autocomplete="username" />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+                <x-secondary-button href="{{ route('admin.index') }}">Kembali</x-primary-button>
+
+                <x-blue-button class="ml-4">
+                    {{ __('Simpan') }}
+                </x-blue-button>
+            </div>
+        </form>
+    </div>
+
+</x-admin-layout>
